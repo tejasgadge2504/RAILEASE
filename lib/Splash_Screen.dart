@@ -29,6 +29,7 @@ class _Splash_ScreenState extends State<Splash_Screen> {
 
   @override
   Widget build(BuildContext context){
+    var size = MediaQuery.of(context).size;
     return Scaffold(
       body: Container(
         color: Colors.white,
@@ -52,7 +53,7 @@ class _Splash_ScreenState extends State<Splash_Screen> {
                         borderRadius: BorderRadius.circular(75.5),
                       ),
 
-                      child: Image.asset(applogo),
+                      child: Image.asset(applogo,height: size.height*0.2 ,),
                   ),
                 ),
               Padding(
