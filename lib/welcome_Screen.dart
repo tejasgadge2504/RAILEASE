@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mine_app/LoginPage.dart';
 import 'package:mine_app/main.dart';
 import 'package:mine_app/src/constants/colors.dart';
 import 'package:mine_app/src/constants/images.dart';
@@ -34,12 +35,12 @@ class Welcome_Screen extends StatelessWidget{
             Text('Student',style: TextStyle(fontSize: 30, fontWeight: FontWeight.w400), ),
             SizedBox(height: 65,),
             Text('Please Kindly Login or SignUp on the App',style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),textAlign: TextAlign.center,),
-            SizedBox(height: height*0.2,),
+            SizedBox(height: height*0.06,),
             Row(
               children: [
                 SizedBox(width: width*0.1,),
                 Expanded(child: ElevatedButton(onPressed: (){
-                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => MyHomePage(),));
+                  Navigator.of(context).push(_createRoute());
                 }, child: Text('LOGIN'),style: ElevatedButton.styleFrom(
                   side: BorderSide(color: tAppbar_color),
                   padding: EdgeInsets.symmetric(vertical: 15),
@@ -53,8 +54,22 @@ class Welcome_Screen extends StatelessWidget{
                 SizedBox(width: width*0.1,),
 
               ],
-            )
+            ),
+        SizedBox(height: height*0.03,),
+            Text('OR'),
+            SizedBox(height: height*0.03,),
 
+            SizedBox(
+              width: width*0.5,
+              child: ElevatedButton(onPressed: (){
+                Navigator.of(context).push(_createRoute());
+              }, child: Text('ADMIN\'s Corner',style: TextStyle(
+              ),),style: ElevatedButton.styleFrom(
+                side: BorderSide(color: tAppbar_color),
+                padding: EdgeInsets.symmetric(vertical: 15),
+              ),)
+
+            ),
                 ],
               ),
 
@@ -64,4 +79,22 @@ class Welcome_Screen extends StatelessWidget{
       ),
     );
   }
+}
+
+Route _createRoute() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) =>  LoginPage(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      const begin = Offset(0.0, 1.0);
+      const end = Offset.zero;
+      const curve = Curves.easeIn;
+
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+      return SlideTransition(
+        position: animation.drive(tween),
+        child: child,
+      );
+    },
+  );
 }
