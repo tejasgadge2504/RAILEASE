@@ -3,6 +3,7 @@ import 'package:mine_app/Mypage.dart';
 import 'package:mine_app/SlideBar.dart';
 import 'package:mine_app/Splash_Screen.dart';
 import 'package:mine_app/src/constants/colors.dart';
+import 'package:mine_app/registration.dart';
 
 
 
@@ -59,15 +60,28 @@ class MyHomePage extends StatelessWidget {
         ],
 
       ),
-      body:
-      ListView.builder(
-          itemCount: List_posts.length,
-          itemBuilder:(context,index){
-            return Mypage(child:List_posts[index],);
+      body: ListView.builder(
+        itemCount: List_posts.length,
+        itemBuilder: (context, index) {
+          if (List_posts[index] == 'Apply for Concession') {
+            // Pass a callback function to handle navigation to Registration
+            return Mypage(
+              child: List_posts[index],
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => registration()),
+                );
+              },
+            );
+          } else {
+            return Mypage(
+              child: List_posts[index],
+              onTap: () {},
+            );
           }
-      )
-      // Text('hello')
-
+        },
+      ),
     );
   }
 }
