@@ -27,10 +27,7 @@ class Mypage extends StatelessWidget {
             onPressed: () {
               if (child == 'Apply for Consession') {
                 // Handle navigation to Registration
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => registration()),
-                );
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => registration(),));
               } else {
                 // Handle other actions if needed
               }
