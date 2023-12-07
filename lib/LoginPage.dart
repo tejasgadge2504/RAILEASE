@@ -11,11 +11,20 @@ class LoginPage extends StatelessWidget{
   bool passToggle = true;
 
   @override
+  void dispose(){
+    // super.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
 
     var size = MediaQuery.of(context).size;
 
     return Scaffold(
+
+
 
       backgroundColor: tlogin_color.shade100 ,
       body: SingleChildScrollView(
@@ -33,7 +42,7 @@ class LoginPage extends StatelessWidget{
         
                 Row(
                    children: [
-                     SizedBox(width: size.width*0.4,),
+                     SizedBox(width: size.width*0.47,),
                      Icon(Icons.important_devices,size: 65.0,),
                    ],
                 ),
@@ -63,6 +72,7 @@ class LoginPage extends StatelessWidget{
                       ),
                       SizedBox(height: size.height*0.03,),
                       TextFormField(
+                        obscureText: passToggle,
                         keyboardType: TextInputType.visiblePassword,
                         controller: passwordController,
                         style: TextStyle(color: Colors.white),
@@ -71,7 +81,18 @@ class LoginPage extends StatelessWidget{
                           labelText: tpasswd_Input,suffixStyle: TextStyle(fontWeight: FontWeight.w900),
                           hintText: tpasswd_Input,prefixStyle: TextStyle(color: Colors.white),
                           border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(20.0)),borderSide: BorderSide(color: tButton_border)),
-                          suffixIcon: Icon(Icons.remove_red_eye,),
+                          suffixIcon:Icon(Icons.remove_red_eye,),
+                          //
+                          //
+                          //
+                          // InkWell(
+                          //     onTap: (){
+                          //       passToggle=false;
+                          //     },
+                          //     child:
+                          //
+                          // ),
+
 
                         ),
                       ),
@@ -81,7 +102,7 @@ class LoginPage extends StatelessWidget{
 
                      Row(
                        children: [
-                         SizedBox(width: size.width*0.52,),
+                         SizedBox(width: size.width*0.6,),
                          InkWell(
 
                              onTap: (){},
@@ -103,7 +124,7 @@ class LoginPage extends StatelessWidget{
                        child: ElevatedButton(
                          onPressed: (){
                          // if(){
-                           Navigator.of(context).push(_createRoute());
+                           Navigator.of(context).pushReplacement(_createRoute());
                          // }
                          // else{
                          //   Text('Invalid Credentials please fill correctly');

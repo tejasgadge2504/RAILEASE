@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mine_app/LoginPage.dart';
 import 'package:mine_app/src/constants/images.dart';
 
 class SlideBar extends StatelessWidget{
@@ -89,8 +90,12 @@ Container(
 
           ]
       ),
+        InkWell(
+            onTap: (){
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginPage(),));
 
-      Row(
+            },
+            child:Row(
           children: [
             IconButton(onPressed: (){
               //an tap
@@ -103,9 +108,10 @@ Container(
 
 
 
-
+        )
 
     ],
+
   ),
 )
 
