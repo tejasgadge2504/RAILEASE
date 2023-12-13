@@ -3,7 +3,7 @@ import 'package:mine_app/Mypage.dart';
 import 'package:mine_app/SlideBar.dart';
 import 'package:mine_app/Splash_Screen.dart';
 import 'package:mine_app/src/constants/colors.dart';
-import 'package:mine_app/registration.dart';
+import 'package:mine_app/Registration.dart';
 
 
 
@@ -43,6 +43,8 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    var size = MediaQuery.of(context).size;
+
     return Scaffold(
       drawer: SlideBar(),
       appBar: AppBar(
@@ -70,7 +72,7 @@ class MyHomePage extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => registration()),
+                  MaterialPageRoute(builder: (context) => Registration()),
                 );
               },
             );

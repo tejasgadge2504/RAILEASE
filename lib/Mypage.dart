@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mine_app/src/constants/colors.dart';
-import 'package:mine_app/registration.dart';
+import 'package:mine_app/Registration.dart';
 
 
 class Mypage extends StatelessWidget {
@@ -14,6 +14,7 @@ class Mypage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: Container(
@@ -27,7 +28,7 @@ class Mypage extends StatelessWidget {
             onPressed: () {
               if (child == 'Apply for Consession') {
                 // Handle navigation to Registration
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => registration(),));
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => Registration(),));
               } else {
                 // Handle other actions if needed
               }
