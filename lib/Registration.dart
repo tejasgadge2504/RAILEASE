@@ -11,6 +11,7 @@ class Registration extends StatefulWidget {
 }
 
 class _RegistrationState extends State<Registration> {
+
   int currentStep = 0;
   bool isCompleted=false;
   TextEditingController Name=TextEditingController();
@@ -135,25 +136,37 @@ class _RegistrationState extends State<Registration> {
           title: const Text('Confirm'),
           content: Column(
             children: [
+              Container(
+                child: Image.asset("assets/images/Success.png"),
+                height:150 ,
+              ),
               // Image.asset("assets/Success.png"),
               // const SizedBox(height: 16),
+
+
+              SizedBox(height: 30,),
 
               ElevatedButton(
                 onPressed: () {
                   // Navigate to the home page or perform any other action
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) =>MyHomePage()
-
-                    ),
-                  );
+                  // Navigator.of(context).push(
+                  //   MaterialPageRoute(
+                  //     builder: (context) =>MyHomePage()
+                  //
+                  //   ),
+                  // );
 
                 },
-                child: Text('Go to Home Page'),
+                child: Text('Your Request is Successfully accepted \nYou will be notified once your application is being accepted via Mail. \n\nThankyou !!'),
+
+
                 style: ElevatedButton.styleFrom(
                   primary: Colors.blue,
                   onPrimary: Colors.white,
+                  padding: EdgeInsets.symmetric(vertical: 15.0,horizontal: 20.0),
+
               ),
+
 
               )],
           ),
@@ -169,7 +182,7 @@ class _RegistrationState extends State<Registration> {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text("Registration"),
+          title: Text("New User Registration"),
         ),
         body: Stepper(
             type: StepperType.horizontal,
