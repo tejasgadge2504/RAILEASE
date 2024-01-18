@@ -22,6 +22,7 @@ class Mypage extends StatelessWidget {
         decoration: BoxDecoration(
           color: tbutton_widget_color,
           borderRadius: BorderRadius.circular(20.0),
+
         ),
         child:
            ElevatedButton(

@@ -11,6 +11,7 @@ class Registration extends StatefulWidget {
 }
 
 class _RegistrationState extends State<Registration> {
+
   int currentStep = 0;
   bool isCompleted=false;
   TextEditingController Name=TextEditingController();
@@ -135,8 +136,8 @@ class _RegistrationState extends State<Registration> {
           title: const Text('Confirm'),
           content: Column(
             children: [
-              // Image.asset("assets/Success.png"),
-              // const SizedBox(height: 16),
+              Image.asset("registered"),
+              const SizedBox(height: 16),
 
               ElevatedButton(
                 onPressed: () {
