@@ -12,6 +12,7 @@ class Registration extends StatefulWidget {
 
 class _RegistrationState extends State<Registration> {
 
+
   int currentStep = 0;
   bool isCompleted=false;
   TextEditingController Name=TextEditingController();
