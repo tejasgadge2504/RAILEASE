@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mine_app/src/constants/colors.dart';
 import 'package:mine_app/Registration.dart';
+import 'package:mine_app/stepsToApply.dart';
 
 
 class Mypage extends StatelessWidget {
@@ -29,6 +30,18 @@ class Mypage extends StatelessWidget {
               if (child == 'Apply for Consession') {
                 // Handle navigation to Registration
                 Navigator.of(context).push(MaterialPageRoute(builder: (context) => Registration(),));
+              }
+              if (child == 'Steps to Apply') {
+                // Handle navigation to Registration
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => MyStepsPage(),));
+              }
+              if (child == 'E-History') {
+                // Handle navigation to Registration
+                // Navigator.of(context).push(MaterialPageRoute(builder: (context) => MyStepsPage(),));
+              }
+              if (child == 'Application Status') {
+                // Handle navigation to Registration
+                // Navigator.of(context).push(MaterialPageRoute(builder: (context) => MyStepsPage(),));
               } else {
                 // Handle other actions if needed
               }

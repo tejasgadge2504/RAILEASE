@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mine_app/LoginPage.dart';
+import 'package:mine_app/myProfile.dart';
 import 'package:mine_app/src/constants/images.dart';
+
 
 class SlideBar extends StatelessWidget{
   @override
@@ -34,15 +36,23 @@ Container(
     children: [
 
 
-     Row(
-       children: [
-       IconButton(onPressed: (){
-         //an tap
-       },
-           icon: Icon(Icons.person)),
-         Text('  My Profile', style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600),),
+     InkWell(
+       onTap: (){
+         Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ProfilePage(),));
 
-         ]
+       },
+       child: Row(
+         children: [
+        IconButton(onPressed: (){
+             //an tap
+
+           },
+               icon: Icon(Icons.person)),
+
+           Text('  My Profile', style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600),),
+
+           ]
+       ),
      ),
 
       Row(
@@ -61,8 +71,8 @@ Container(
             IconButton(onPressed: (){
               //an tap
             },
-                icon: Icon(Icons.history)),
-            Text('  Application History', style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600),),
+                icon: Icon(Icons.settings)),
+            Text('  Settings', style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600),),
 
           ]
       ),
