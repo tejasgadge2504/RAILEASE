@@ -4,6 +4,7 @@ import 'package:mine_app/SlideBar.dart';
 import 'package:mine_app/Splash_Screen.dart';
 import 'package:mine_app/src/constants/colors.dart';
 import 'package:mine_app/Registration.dart';
+import 'package:mine_app/stepsToApply.dart';
 
 
 
@@ -77,13 +78,32 @@ class MyHomePage extends StatelessWidget {
                 // );
               },
             );
-          } else {
+          }
+
+          else if (List_posts[index] == 'Steps to Apply') {
+            // Pass a callback function to handle navigation to Registration
+            return Mypage(
+              child: List_posts[index],
+              onTap: () {
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(builder: (context) => MyStepsPage()),
+                // );
+              },
+            );
+          }
+          else {
             return Mypage(
               child: List_posts[index],
               onTap: () {},
             );
           }
         },
+
+
+
+
+
       ),
     );
   }
