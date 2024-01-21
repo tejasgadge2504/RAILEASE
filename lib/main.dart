@@ -10,7 +10,7 @@ import 'package:mine_app/stepsToApply.dart';
 
 void main() {
   runApp(const MyApp());
-}
+} 
 
 class MyApp extends StatelessWidget {
 
