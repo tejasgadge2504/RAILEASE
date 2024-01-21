@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mine_app/src/constants/colors.dart';
 import 'package:mine_app/Registration.dart';
+import 'package:mine_app/e-history.dart';
 
 
 class Mypage extends StatelessWidget {
@@ -30,7 +31,12 @@ class Mypage extends StatelessWidget {
               if (child == 'Apply for Consession') {
                 // Handle navigation to Registration
                 Navigator.of(context).push(MaterialPageRoute(builder: (context) => Registration(),));
-              } else {
+              }
+              else if (child == 'E-History') {
+                // Handle navigation to TrainPassHistoryPage (E-History page)
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => TrainPassHistoryPage()));
+              }
+              else {
                 // Handle other actions if needed
               }
             },
