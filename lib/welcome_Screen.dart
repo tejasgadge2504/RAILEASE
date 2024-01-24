@@ -79,9 +79,6 @@ class Welcome_Screen extends StatelessWidget{
                 ],
               ),
 
-
-
-        
       ),
     );
   }

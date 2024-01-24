@@ -27,7 +27,8 @@ class LoginPage extends StatelessWidget{
 
 
       backgroundColor: tlogin_color.shade100 ,
-      body: SingleChildScrollView(
+      body:
+      SingleChildScrollView(
         // child: Container(
         //   height: size.height,
         //   width: size.width,

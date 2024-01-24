@@ -27,62 +27,62 @@ class _RegistrationState extends State<Registration> {
   List<Step> stepList() =>
       [
         Step(
-          isActive: currentStep >= 0,
-          title: const Text('Info'),
-          content: Container(
-                child: Column(
-                  children: [
-                    TextField(
-                      controller: Name,
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'Full Name',
-                      ),
+            isActive: currentStep >= 0,
+            title: const Text('Info'),
+            content: Container(
+              child: Column(
+                children: [
+                  TextField(
+                    controller: Name,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Full Name',
                     ),
-                    const SizedBox(
-                      height: 8,
-                    ),TextField(
-                      controller: Gender,
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'Gender',
-                      ),
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),TextField(
+                    controller: Gender,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Gender',
                     ),
-                    const SizedBox(
-                      height: 8,
-                    ),TextField(
-                      controller: Address,
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'Address ',
-                      ),
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),TextField(
+                    controller: Address,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Address ',
                     ),
-                    const SizedBox(
-                      height: 8,
-                    ),TextField(
-                      controller :Mobile_No,
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'Mobile-No',
-                      ),
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),TextField(
+                    controller :Mobile_No,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Mobile-No',
                     ),
-                    const SizedBox(
-                      height: 8,
-                    ),TextField(
-                      controller: Email_ID,
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'Email-ID(other than ves-id)',
-                      ),
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),TextField(
+                    controller: Email_ID,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Email-ID(other than ves-id)',
                     ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                  ],
-                ),
-              )
-          ),
-        
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                ],
+              ),
+            )
+        ),
+
         Step(
           isActive: currentStep >= 1,
           title: const Text('Docs'),
@@ -166,7 +166,7 @@ class _RegistrationState extends State<Registration> {
                   onPrimary: Colors.white,
                   padding: EdgeInsets.symmetric(vertical: 15.0,horizontal: 20.0),
 
-              ),
+                ),
 
 
               )],

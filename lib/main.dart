@@ -4,7 +4,9 @@ import 'package:mine_app/SlideBar.dart';
 import 'package:mine_app/Splash_Screen.dart';
 import 'package:mine_app/src/constants/colors.dart';
 import 'package:mine_app/Registration.dart';
-import 'package:mine_app/stepsToApply.dart';
+import 'e-history.dart';
+
+
 
 
 
@@ -14,7 +16,8 @@ void main() {
 
 class MyApp extends StatelessWidget {
 
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
+
 
   // This widget is the root of your application.
   @override
@@ -45,24 +48,22 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+
     var size = MediaQuery.of(context).size;
 
     return Scaffold(
       drawer: SlideBar(),
       appBar: AppBar(
         backgroundColor: tAppbar_color.shade200,
-          title: Text('RAILEASE'),
-
+        title: Text('RAILEASE'),
         actions: [
           Row(
             children: [
               Text('Welcome User'),
-              IconButton(onPressed: (){}, icon:Icon(Icons.person_2_rounded))
+              IconButton(onPressed: () {}, icon: Icon(Icons.person_2_rounded))
             ],
           )
-
         ],
-
       ),
       body: ListView.builder(
         itemCount: List_posts.length,
@@ -72,26 +73,24 @@ class MyHomePage extends StatelessWidget {
             return Mypage(
               child: List_posts[index],
               onTap: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => Registration()),
-                // );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Registration()),
+                );
               },
             );
-          }
-
-          else if (List_posts[index] == 'Steps to Apply') {
-            // Pass a callback function to handle navigation to Registration
-            return Mypage(
-              child: List_posts[index],
-              onTap: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => MyStepsPage()),
-                // );
-              },
-            );
-          }
+          } else if (List_posts[index] == 'E-History') {
+    // Navigate to the TrainPassHistoryPage when 'E-History' is clicked
+    return Mypage(
+    child: List_posts[index],
+    onTap: () {
+    Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => TrainPassHistoryPage()),
+    );
+    },
+    );
+    }
           else {
             return Mypage(
               child: List_posts[index],
@@ -99,11 +98,6 @@ class MyHomePage extends StatelessWidget {
             );
           }
         },
-
-
-
-
-
       ),
     );
   }
