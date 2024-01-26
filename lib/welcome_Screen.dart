@@ -51,10 +51,10 @@ class Welcome_Screen extends StatelessWidget{
                 SizedBox(width: width*0.05,),
                 Expanded(child: OutlinedButton(onPressed: (){
                   Navigator.of(context).push(_regRoute());
-                }, child: Text('New User Register Here'),
+                }, child: Text('New User?\nRegister Here'),
                   style: OutlinedButton.styleFrom(
                   side: BorderSide(color: Colors.black),
-                  padding: EdgeInsets.symmetric(vertical: 25),
+                  padding: EdgeInsets.symmetric(vertical: 15),
                 ),)),
                 SizedBox(width: width*0.1,),
 
@@ -80,9 +80,6 @@ class Welcome_Screen extends StatelessWidget{
                 ],
               ),
 
-
-
-        
       ),
     );
   }
