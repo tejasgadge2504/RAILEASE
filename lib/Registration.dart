@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mine_app/main.dart';
 import 'package:mine_app/src/constants/colors.dart';
 import 'package:mine_app/Mypage.dart';
+import 'package:file_picker/file_picker.dart';
 
 import 'Mypage.dart';
 
@@ -24,70 +25,81 @@ class _RegistrationState extends State<Registration> {
   TextEditingController Expected_Gradutaion_Year=TextEditingController();
   TextEditingController Branch=TextEditingController();
   TextEditingController Divison=TextEditingController();
+
+  List<String> selectedDocuments = [];
   List<Step> stepList() =>
       [
         Step(
-            isActive: currentStep >= 0,
-            title: const Text('Info'),
-            content: Container(
-              child: Column(
-                children: [
-                  TextField(
-                    controller: Name,
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Full Name',
-                    ),
+          isActive: currentStep >= 0,
+          title: const Text('Info'),
+          content: Container(
+            child: Column(
+              children: [
+                TextField(
+                  controller: Name,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Full Name',
                   ),
-                  const SizedBox(
-                    height: 8,
-                  ),TextField(
-                    controller: Gender,
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Gender',
-                    ),
+                ),
+                const SizedBox(height: 8),
+                TextField(
+                  controller: Gender,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Gender',
                   ),
-                  const SizedBox(
-                    height: 8,
-                  ),TextField(
-                    controller: Address,
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Address ',
-                    ),
+                ),
+                const SizedBox(height: 8),
+                TextField(
+                  controller: Address,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Address ',
                   ),
-                  const SizedBox(
-                    height: 8,
-                  ),TextField(
-                    controller :Mobile_No,
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Mobile-No',
-                    ),
+                ),
+                const SizedBox(height: 8),
+                TextField(
+                  controller: Mobile_No,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Mobile-No',
                   ),
-                  const SizedBox(
-                    height: 8,
-                  ),TextField(
-                    controller: Email_ID,
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Email-ID(other than ves-id)',
-                    ),
+                ),
+                const SizedBox(height: 8),
+                TextField(
+                  controller: Email_ID,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Email-ID(other than ves-id)',
                   ),
-                  const SizedBox(
-                    height: 8,
-                  ),
-                ],
-              ),
-            )
-        ),
+                ),
+                const SizedBox(height: 8),
+                ElevatedButton(
+                  onPressed: () async {
+                    FilePickerResult? result =
+                    await FilePicker.platform.pickFiles(allowMultiple: true);
 
-        Step(
-          isActive: currentStep >= 1,
-          title: const Text('Docs'),
-          content: Center(
-            child: Text("Docs"),
+                    if (result != null) {
+                      List<String> paths =
+                      result.files.map((file) => file.path!).toList();
+                      setState(() {
+                        selectedDocuments = paths;
+                      });
+                    }
+                  },
+                  child: Text('Upload Documents'),
+                ),
+                const SizedBox(height: 8),
+                Text('Selected Documents:'),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: selectedDocuments
+                      .map((document) => Text(document))
+                      .toList(),
+                ),
+              ],
+            ),
           ),
         ),
         Step(
@@ -164,7 +176,8 @@ class _RegistrationState extends State<Registration> {
                 style: ElevatedButton.styleFrom(
                   primary: Colors.blue,
                   onPrimary: Colors.white,
-                  padding: EdgeInsets.symmetric(vertical: 15.0,horizontal: 20.0),
+                  padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0 - 9.0),
+
 
                 ),
 
@@ -203,6 +216,7 @@ class _RegistrationState extends State<Registration> {
                 setState(() => currentStep -= 1);
               }
             }
+
         )
     );
 

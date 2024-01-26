@@ -99,61 +99,41 @@ class LoginPage extends StatelessWidget{
                       ),
 
 
-                     SizedBox(height: size.height*0.03,),
-
-                     Row(
-                       children: [
-                         SizedBox(width: size.width*0.6,),
-                         InkWell(
-
-                             onTap: (){},
-                             child: Text('Forgot Password ?',style: TextStyle(
-                               fontSize: 16,
-                               color: tforgot_password.shade400,
-
-                             ),)
-                         ),
-                       ],
-
-                     ),
-                      SizedBox(height: size.height*0.1,),
-
-
-                     SizedBox(
-                       width: size.width * 0.5,
-                       height: size.height*0.07,
-                       child: ElevatedButton(
-                         onPressed: (){
-                         // if(){
-                           Navigator.of(context).pushReplacement(_createRoute());
-                         // }
-                         // else{
-                         //   Text('Invalid Credentials please fill correctly');
-                         // }
-                       },
-
-                                  child: Text('LOGIN'),
+                          SizedBox(height: size.height * 0.03),
+                          Align(
+                            alignment: Alignment.centerRight, // Align to the center
+                            child: InkWell(
+                              onTap: () {},
+                              child: Text(
+                                'Forgot Password ?',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: tforgot_password.shade400,
+                                ),
                               ),
-                     ),
-
-                      ]
+                            ),
+                          ),
+                          SizedBox(height: size.height * 0.1),
+                          SizedBox(
+                            width: size.width * 0.5,
+                            height: size.height * 0.07,
+                            child: ElevatedButton(
+                              onPressed: () {
+                                Navigator.of(context).pushReplacement(_createRoute());
+                              },
+                              child: Text('LOGIN'),
+                            ),
+                          ),
+                        ],
+                      ),
                   ),
-                  ),
-
-        
-        
-        
-                 ],
+              ],
             ),
           ),
-        
-        // ),
       ),
     );
   }
 }
-
-
 
 Route _createRoute() {
   return PageRouteBuilder(
