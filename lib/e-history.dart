@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-class TrainPassHistoryPage extends StatefulWidget {
 
+class TrainPassHistoryPage extends StatefulWidget {
   @override
   _TrainPassHistoryPageState createState() => _TrainPassHistoryPageState();
 }
@@ -21,22 +21,24 @@ class _TrainPassHistoryPageState extends State<TrainPassHistoryPage> {
       ),
       body: SingleChildScrollView(
         child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Add your text widgets here
-              Text(
-                'Name: Deepak Kumbhar',
-                style: TextStyle(fontSize: 18),
-              ),
-              Text(
-                'Division: D7B',
-                style: TextStyle(fontSize: 18),
-              ),
-              // Add more text widgets as needed
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Add your text widgets here
+            Text(
+              'Name: Deepak Kumbhar',
+              style: TextStyle(fontSize: 18),
+            ),
+            Text(
+              'Division: D7B',
+              style: TextStyle(fontSize: 18),
+            ),
+            // Add more text widgets as needed
 
-              // Add some space between text and DataTable
-              SizedBox(height: 20),
-              DataTable(
+            // Add some space between text and DataTable
+            SizedBox(height: 20),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: DataTable(
                 columns: [
                   DataColumn(label: Text('Month')),
                   DataColumn(label: Text('Applied On')),
@@ -56,8 +58,11 @@ class _TrainPassHistoryPageState extends State<TrainPassHistoryPage> {
                   );
                 }).toList(),
               ),
-            ]),
-      )  );
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
 
@@ -68,9 +73,11 @@ class TrainPassApplication {
   final String passNumber;
   final String previousPassNumber;
 
-  TrainPassApplication(this.month, this.appliedOn, this.applicationId, this.passNumber, this.previousPassNumber);
+  TrainPassApplication(
+      this.month,
+      this.appliedOn,
+      this.applicationId,
+      this.passNumber,
+      this.previousPassNumber,
+      );
 }
-
-
-
-
