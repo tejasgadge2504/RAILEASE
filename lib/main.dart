@@ -7,7 +7,6 @@ import 'package:mine_app/Registration.dart';
 import 'package:mine_app/stepsToApply.dart';
 
 
-
 void main() {
   runApp(const MyApp());
 }
@@ -72,10 +71,6 @@ class MyHomePage extends StatelessWidget {
             return Mypage(
               child: List_posts[index],
               onTap: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => Registration()),
-                // );
               },
             );
           }
@@ -85,10 +80,15 @@ class MyHomePage extends StatelessWidget {
             return Mypage(
               child: List_posts[index],
               onTap: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => MyStepsPage()),
-                // );
+              },
+            );
+          }
+
+          else if (List_posts[index] == 'Application Status') {
+            // Pass a callback function to handle navigation to Registration
+            return Mypage(
+              child: List_posts[index],
+              onTap: () {
               },
             );
           }
@@ -99,11 +99,6 @@ class MyHomePage extends StatelessWidget {
             );
           }
         },
-
-
-
-
-
       ),
     );
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mine_app/Admins/UnderConstuction.dart';
+import 'package:mine_app/Admins/AdminLogin.dart';
+import 'package:mine_app/Admins/MainPage.dart';
 import 'package:mine_app/LoginPage.dart';
 import 'package:mine_app/Registration.dart';
 import 'package:mine_app/main.dart';
@@ -126,7 +127,7 @@ Route _regRoute() {
 
 Route _adminRoute() {
   return PageRouteBuilder(
-    pageBuilder: (context, animation, secondaryAnimation) =>  UnderConstruction(),
+    pageBuilder: (context, animation, secondaryAnimation) => AdminLogin(),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       const begin = Offset(0.0, 1.0);
       const end = Offset.zero;

@@ -18,6 +18,7 @@ class _RegistrationState extends State<Registration> {
   TextEditingController Name=TextEditingController();
   TextEditingController Gender=TextEditingController();
   TextEditingController Address=TextEditingController();
+
   TextEditingController Mobile_No=TextEditingController();
   TextEditingController Email_ID=TextEditingController();
   TextEditingController Admission_Year=TextEditingController();
@@ -92,7 +93,7 @@ class _RegistrationState extends State<Registration> {
         ),
         Step(
             isActive: currentStep >= 2,
-            title: const Text('Academic Info'),
+            title: const Text('Academic \n Info'),
             content: Container(
               child: Column(
                 children: [
@@ -134,7 +135,7 @@ class _RegistrationState extends State<Registration> {
             )),
         Step(
           isActive: currentStep >= 3,
-          title: const Text('Confirm'),
+          title: const Text('OK'),
           content: Column(
             children: [
               Container(
@@ -154,7 +155,8 @@ class _RegistrationState extends State<Registration> {
                   //   MaterialPageRoute(
                   //     builder: (context) =>MyHomePage()
                   //
-                  //   ),
+                  //   ),6
+
                   // );
 
                 },

@@ -3,7 +3,6 @@ import 'package:mine_app/LoginPage.dart';
 import 'package:mine_app/myProfile.dart';
 import 'package:mine_app/src/constants/images.dart';
 
-
 class SlideBar extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
@@ -12,7 +11,6 @@ class SlideBar extends StatelessWidget{
         padding: EdgeInsets.zero,
         children: [
           UserAccountsDrawerHeader(
-
               accountName: Text('Tejas Gadge') ,
               accountEmail: Text('tejasgadge903@gmail.com'),
             currentAccountPicture: CircleAvatar(
@@ -20,9 +18,7 @@ class SlideBar extends StatelessWidget{
               Image.asset(applogo),
 
               ),
-
             ),
-
           ),
 Container(
 
@@ -115,9 +111,6 @@ Container(
 
           ]
       ),
-
-
-
         )
 
     ],
@@ -127,7 +120,6 @@ Container(
 
         ],
       ),
-
     );
   }
 }
