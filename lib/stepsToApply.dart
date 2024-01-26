@@ -2,11 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:mine_app/src/constants/colors.dart';
 
-// void main() {
-//   runApp(MyApp());
-// }
-
-
 
 class MyStepsPage extends StatelessWidget {
   @override

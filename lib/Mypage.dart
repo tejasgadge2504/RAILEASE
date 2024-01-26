@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:mine_app/applicationStatus.dart';
 import 'package:mine_app/src/constants/colors.dart';
 import 'package:mine_app/Registration.dart';
+import 'package:mine_app/stepsToApply.dart';
+import 'package:mine_app/Approval.dart';
 import 'package:mine_app/e-history.dart';
+
 
 
 class Mypage extends StatelessWidget {
@@ -36,7 +40,18 @@ class Mypage extends StatelessWidget {
                 // Handle navigation to TrainPassHistoryPage (E-History page)
                 Navigator.of(context).push(MaterialPageRoute(builder: (context) => TrainPassHistoryPage()));
               }
+
+              if (child == 'E-History') {
+                // Handle navigation to Registration
+                // Navigator.of(context).push(MaterialPageRoute(builder: (context) => MyStepsPage(),));
+              }
+              if (child == 'Application Status') {
+                // Handle navigation to Registration
+                 Navigator.of(context).push(MaterialPageRoute(builder: (context) => Approval(),));
+              } 
+
               else {
+
                 // Handle other actions if needed
               }
             },

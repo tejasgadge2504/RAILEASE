@@ -47,7 +47,6 @@ class LoginPage extends StatelessWidget{
                      Icon(Icons.important_devices,size: 65.0,),
                    ],
                 ),
-        
                 SizedBox(height: size.height*0.02,),
                 Text('LOGIN',style: TextStyle(fontWeight: FontWeight.w600,fontSize: 65,color: tlogin_title_color),),
                 Text('Please use correct credentials', style: TextStyle(fontSize: 20,fontWeight: FontWeight.w500),textAlign: TextAlign.center),

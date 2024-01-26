@@ -9,7 +9,6 @@ import 'e-history.dart';
 
 
 
-
 void main() {
   runApp(const MyApp());
 }
@@ -73,10 +72,31 @@ class MyHomePage extends StatelessWidget {
             return Mypage(
               child: List_posts[index],
               onTap: () {
+
+              },
+            );
+          }
+
+          else if (List_posts[index] == 'Steps to Apply') {
+            // Pass a callback function to handle navigation to Registration
+            return Mypage(
+              child: List_posts[index],
+              onTap: () {
+              },
+            );
+          }
+
+          else if (List_posts[index] == 'Application Status') {
+            // Pass a callback function to handle navigation to Registration
+            return Mypage(
+              child: List_posts[index],
+              onTap: () {
+
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => Registration()),
                 );
+
               },
             );
           } else if (List_posts[index] == 'E-History') {
