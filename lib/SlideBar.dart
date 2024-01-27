@@ -15,7 +15,7 @@ class SlideBar extends StatelessWidget{
               accountEmail: Text('tejasgadge903@gmail.com'),
             currentAccountPicture: CircleAvatar(
               child: ClipOval(child:
-              Image.asset(applogo),
+              Image.asset('assets/images/applogo1.png'),
 
               ),
             ),

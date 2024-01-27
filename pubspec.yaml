@@ -30,8 +30,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
-  file_picker: ^4.0.10
+  file_picker: ^4.1.4
+  permission_handler: ^11.2.0
 
 
 
@@ -67,11 +67,12 @@ flutter:
   assets:
     - assets/images/
     - assets/images/applogo_bluebg.jpg
-    - assets/images/applogo.jpg
     - assets/images/logo_rmvbg.jpg
     - assets/images/Success.png
     - assets/images/Under_Construction.png
     - assets/images/waitingTime.png
+    - assets/images/applogo1.png
+    - assets/images/vesitcampus.jpg
 
     #- assets/lottie/
 

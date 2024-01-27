@@ -79,18 +79,19 @@ class AdminLogin extends StatelessWidget {
                         );
                       },
                     ),
-                    SizedBox(height: size.height * 0.03,),
-                    Row(
-                      children: [
-                        SizedBox(width: size.width * 0.6,),
-                        InkWell(
-                          onTap: () {},
-                          child: Text('Forgot Password ?', style: TextStyle(
+                    SizedBox(height: size.height * 0.03),
+                    Align(
+                      alignment: Alignment.centerRight, // Align to the center
+                      child: InkWell(
+                        onTap: () {},
+                        child: Text(
+                          'Forgot Password ?',
+                          style: TextStyle(
                             fontSize: 16,
                             color: tforgot_password.shade400,
-                          ),),
+                          ),
                         ),
-                      ],
+                      ),
                     ),
                     SizedBox(height: size.height * 0.1,),
                     SizedBox(
