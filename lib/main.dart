@@ -9,10 +9,7 @@ import 'package:permission_handler/permission_handler.dart';
 
 
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Permission.photos.request();
-  await Permission.camera.request();
+void main()  {
   runApp(MyApp());
 }
 
