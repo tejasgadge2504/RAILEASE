@@ -5,12 +5,15 @@ import 'package:mine_app/Splash_Screen.dart';
 import 'package:mine_app/src/constants/colors.dart';
 import 'package:mine_app/Registration.dart';
 import 'e-history.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 
 
-
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Permission.photos.request();
+  await Permission.camera.request();
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {

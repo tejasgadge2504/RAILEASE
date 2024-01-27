@@ -49,7 +49,9 @@ class Mypage extends StatelessWidget {
                 // Handle navigation to Registration
                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => Approval(),));
               } 
-
+              if (child =='Steps to Apply'){
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) =>MyStepsPage()));
+              }
               else {
 
                 // Handle other actions if needed

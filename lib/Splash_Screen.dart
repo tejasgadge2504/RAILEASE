@@ -53,7 +53,7 @@ class _Splash_ScreenState extends State<Splash_Screen> {
                         borderRadius: BorderRadius.circular(75.5),
                       ),
 
-                      child: Image.asset(applogo,height: size.height*0.2 ,),
+                      child: Image.asset('assets/images/applogo1.png',height: size.height*0.2 ,),
                   ),
                 ),
               Padding(

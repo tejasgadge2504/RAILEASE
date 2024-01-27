@@ -3,7 +3,6 @@ import 'package:mine_app/main.dart';
 import 'package:mine_app/src/constants/colors.dart';
 import 'package:mine_app/Mypage.dart';
 import 'package:file_picker/file_picker.dart';
-
 import 'Mypage.dart';
 
 class Registration extends StatefulWidget {
@@ -83,9 +82,9 @@ class _RegistrationState extends State<Registration> {
 
                     if (result != null) {
                       List<String> paths =
-                      result.files.map((file) => file.path!).toList();
+                      result.files.map((file) => file.name ?? '').toList();
                       setState(() {
-                        selectedDocuments = paths;
+                        selectedDocuments.addAll(paths);
                       });
                     }
                   },
@@ -160,17 +159,10 @@ class _RegistrationState extends State<Registration> {
 
               SizedBox(height: 30,),
 
+              SizedBox(height: 30),
               ElevatedButton(
                 onPressed: () {
-                  // Navigate to the home page or perform any other action
-                  // Navigator.of(context).push(
-                  //   MaterialPageRoute(
-                  //     builder: (context) =>MyHomePage()
-                  //
-                  //   ),6
-
-                  // );
-
+                  Navigator.pushReplacementNamed(context, '/');
                 },
                 child: Text('Your Request is Successfully accepted \nYou will be notified once your application is being accepted via Mail. \n\nThankyou !!'),
 
