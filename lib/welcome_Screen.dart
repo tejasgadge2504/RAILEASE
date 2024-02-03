@@ -98,7 +98,7 @@ class Welcome_Screen extends StatelessWidget {
                 ),
                 SizedBox(height: height * 0.03),
                 Text('OR'),
-                SizedBox(height: height * 0.03),
+                SizedBox(height: (height * 0.03)-9),
                 SizedBox(
                   width: width * 0.5,
                   child: ElevatedButton(
