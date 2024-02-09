@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:mine_app/Mypage.dart';
 import 'package:mine_app/SlideBar.dart';
 import 'package:mine_app/Splash_Screen.dart';
+import 'package:mine_app/RenewalPage.dart';
 import 'package:mine_app/src/constants/colors.dart';
 import 'package:mine_app/Registration.dart';
 import 'e-history.dart';
-import 'package:permission_handler/permission_handler.dart';
+
+
 
 
 
@@ -72,7 +74,10 @@ class MyHomePage extends StatelessWidget {
             return Mypage(
               child: List_posts[index],
               onTap: () {
-
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) =>RenewalPage()),
+                );
               },
             );
           }
@@ -82,6 +87,7 @@ class MyHomePage extends StatelessWidget {
             return Mypage(
               child: List_posts[index],
               onTap: () {
+
               },
             );
           }

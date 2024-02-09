@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mine_app/src/constants/colors.dart';
-import 'package:mine_app/ApplyDetails.dart';
 
 class RequestSent extends StatelessWidget {
   @override
