@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "310566241791",
+    "firebase_url": "https://railease-vesit-default-rtdb.firebaseio.com",
+    "project_id": "railease-vesit",
+    "storage_bucket": "railease-vesit.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:310566241791:android:044f48a3d94f2ed09593ca",
+        "android_client_info": {
+          "package_name": "com.example.mine_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzaixH3tX2T2aONDR_bv9RdhbpMvGnsP8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
