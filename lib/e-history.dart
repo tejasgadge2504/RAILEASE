@@ -23,18 +23,58 @@ class _TrainPassHistoryPageState extends State<TrainPassHistoryPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Add your text widgets here
-            Text(
-              'Name: Deepak Kumbhar',
-              style: TextStyle(fontSize: 18),
+            Row(
+              children: [
+                SizedBox(width: 10),
+                _buildInfoBox('Name: Deepak Kumbhar'),
+              ],
             ),
-            Text(
-              'Division: D7B',
-              style: TextStyle(fontSize: 18),
+            SizedBox(width: 10),
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 6.0),
+              child: Column(
+                children: [
+                  _buildInfoBox("Address:D/302, Vinayakeshwar Complex,avinash Gaikwad NagarGaondevi Road,near Shiv Mandir,Badlapur (east)")
+                ],
+              ),
             ),
-            // Add more text widgets as needed
+            Row(
+              children: [
+                SizedBox(width: 10),
+                _buildInfoBox('Division: D7B'),
+                SizedBox(width: 10),
+                _buildInfoBox('Gender: Male'),
+              ],
+            ),
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 6.0),
+              child: Column(
 
-            // Add some space between text and DataTable
+                children: [
+                   SizedBox(width: 10),
+                  _buildInfoBox('DOB: 2004-08-05'),
+                ],
+              ),
+            ),
+            Row(
+              children: [
+                SizedBox(width: 10),
+                _buildInfoBox('From Station: Badlapur'),
+                SizedBox(width: 10),
+                _buildInfoBox('To Station: Kurla'),
+              ],
+            ),
+            SizedBox(width: 10),
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 6.0),
+              child: Column(
+                children: [
+                  SizedBox(width: 10),
+                  _buildInfoBox("Railway Zone:Central")
+                ],
+              ),
+            ),
+
             SizedBox(height: 20),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
@@ -61,6 +101,21 @@ class _TrainPassHistoryPageState extends State<TrainPassHistoryPage> {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildInfoBox(String text) {
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 5.0,horizontal: 5.0),
+      padding: EdgeInsets.all(10.0),
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.grey),
+        borderRadius: BorderRadius.circular(5.0),
+      ),
+      child: Text(
+        text,
+        style: TextStyle(fontSize: 15),
       ),
     );
   }

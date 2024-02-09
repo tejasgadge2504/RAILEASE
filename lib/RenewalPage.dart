@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mine_app/Consessionmsg.dart';
 
 class RenewalPage extends StatefulWidget {
   @override
@@ -82,7 +83,16 @@ class _RenewalPageState extends State<RenewalPage> {
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                _showConfirmationSnackBar(context);
+                showModalBottomSheet(
+                  context: context,
+                  isScrollControlled: true,
+                  builder: (BuildContext context) {
+                    return FractionallySizedBox(
+                      heightFactor: 0.5,
+                      child: Consessionmsg(),
+                    );
+                  },
+                );
               },
               child: Text('Apply'),
             ),
@@ -91,34 +101,4 @@ class _RenewalPageState extends State<RenewalPage> {
       ),
     );
   }
-
-  void _showConfirmationSnackBar(BuildContext context) {
-    final SnackBar snackBar = SnackBar(
-      content: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min, // Ensure the column only takes the minimum required space
-        children: [
-          Text(
-            'You have successfully applied for concession. Your application is under processing. You will be notified via your Alternate E-Mail once your concession pass is ready. Kindly keep checking your Alternate E-Mail account on a regular basis',
-          ),
-          SizedBox(height: 8),
-          Align(
-            alignment: Alignment.centerRight,
-            child: TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: Text(
-                'Back',
-                style: TextStyle(color:Colors.white),
-              ),
-            ),
-          ),
-        ],
-      ),
-      duration: Duration(seconds: 6),
-    );
-    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-  }
-
 }
