@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mine_app/LoginPage.dart';
 import 'package:mine_app/myProfile.dart';
-import 'package:mine_app/src/constants/images.dart';
 
 class SlideBar extends StatelessWidget{
   @override

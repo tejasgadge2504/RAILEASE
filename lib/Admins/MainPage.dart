@@ -2,6 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:mine_app/src/constants/colors.dart';
 import 'package:mine_app/Admins/Admin.dart';
 import 'package:mine_app/Admins/SlideBarA.dart';
+import 'MonthlyReportPage.dart';
+
+class MonthlyReportPage extends StatelessWidget {
+  // This is a placeholder; you'll need to replace it with your actual implementation.
+  // You might want to use GridView or ListView to display the months and options.
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Monthly Report'),
+      ),
+      body: Center(
+        child: Text('Monthly Report Page Content'),
+      ),
+    );
+  }
+}
 
 class MainPage extends StatelessWidget {
   final List<String> listPosts = [
@@ -16,9 +33,9 @@ class MainPage extends StatelessWidget {
     var size = MediaQuery.of(context).size;
 
     return Scaffold(
-       drawer: Drawer(
-         child: SlideBarA(),
-       ),
+      drawer: Drawer(
+        child: SlideBarA(),
+      ),
       appBar: AppBar(
         backgroundColor: tAppbar_color.shade200,
         title: Text('RAILEASE'),
@@ -37,46 +54,18 @@ class MainPage extends StatelessWidget {
       body: ListView.builder(
         itemCount: listPosts.length,
         itemBuilder: (context, index) {
-          if (listPosts[index] == 'Apply for Concession') {
-            // Pass a callback function to handle navigation to Registration
+          if (listPosts[index] == 'Monthly Report') {
             return Admin(
               child: listPosts[index],
               onTap: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => Registration()),
-                // );
+                // Navigate to the MonthlyReportPage
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MonthlyReportPage()),
+                );
               },
             );
-          }
-
-          else if (listPosts[index] == 'Steps to Apply') {
-            // Pass a callback function to handle navigation to Registration
-            return Admin(
-              child: listPosts[index],
-              onTap: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => MyStepsPage()),
-                // );
-              },
-            );
-          }
-
-          else if (listPosts[index] == 'Application Status') {
-            // Pass a callback function to handle navigation to Registration
-            return Admin(
-              child: listPosts[index],
-              onTap: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => MyStepsPage()),
-                // );
-              },
-            );
-          }
-
-          else {
+          } else {
             return Admin(
               child: listPosts[index],
               onTap: () {},
@@ -86,4 +75,10 @@ class MainPage extends StatelessWidget {
       ),
     );
   }
+}
+
+void main() {
+  runApp(MaterialApp(
+    home: MainPage(),
+  ));
 }

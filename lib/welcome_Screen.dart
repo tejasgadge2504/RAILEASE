@@ -96,8 +96,10 @@ class Welcome_Screen extends StatelessWidget {
                     SizedBox(width: width * 0.1),
                   ],
                 ),
+
                 SizedBox(height: (height * 0.03)-9),
                 Text('OR',style: TextStyle(color: Colors.white),),
+
                 SizedBox(height: (height * 0.03)-9),
                 SizedBox(
                   width: width * 0.5,
