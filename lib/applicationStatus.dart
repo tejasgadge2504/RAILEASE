@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mine_app/src/constants/colors.dart';
-import 'package:mine_app/src/constants/images.dart';
 
 class ApplicationStatus extends StatelessWidget {
   @override
