@@ -1,9 +1,11 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:mine_app/main.dart';
 import 'package:mine_app/src/constants/colors.dart';
 import 'package:mine_app/Mypage.dart';
 import 'package:file_picker/file_picker.dart';
 import 'Mypage.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 class Registration extends StatefulWidget {
   @override
@@ -26,6 +28,18 @@ class _RegistrationState extends State<Registration> {
   TextEditingController Branch=TextEditingController();
   TextEditingController Divison=TextEditingController();
 
+  // late DatabaseReference dbRef;
+  // dbRef = FirebaseDatabase.instance.ref().child('Applied Users');
+
+  late DatabaseReference dbRef= FirebaseDatabase.instance.ref().child('Applied_Users');
+
+  // @override
+  // void initState(){
+  //   super.initState();
+  //   dbRef = FirebaseDatabase.instance.ref().child('Applied_Users');
+  //
+  // }
+
   List<String> selectedDocuments = [];
   List<Step> stepList() =>
       [
@@ -37,6 +51,7 @@ class _RegistrationState extends State<Registration> {
               children: [
                 TextField(
                   controller: Name,
+                  keyboardType: TextInputType.name,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Full Name',
@@ -45,6 +60,7 @@ class _RegistrationState extends State<Registration> {
                 const SizedBox(height: 8),
                 TextField(
                   controller: Gender,
+                  keyboardType: TextInputType.text,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Gender',
@@ -53,6 +69,7 @@ class _RegistrationState extends State<Registration> {
                 const SizedBox(height: 8),
                 TextField(
                   controller: Address,
+                  keyboardType: TextInputType.text,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Address ',
@@ -61,6 +78,8 @@ class _RegistrationState extends State<Registration> {
                 const SizedBox(height: 8),
                 TextField(
                   controller: Mobile_No,
+                  keyboardType: TextInputType.phone,
+
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Mobile-No',
@@ -69,6 +88,7 @@ class _RegistrationState extends State<Registration> {
                 const SizedBox(height: 8),
                 TextField(
                   controller: Email_ID,
+                  keyboardType: TextInputType.emailAddress,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Email-ID(other than ves-id)',
@@ -103,13 +123,14 @@ class _RegistrationState extends State<Registration> {
           ),
         ),
         Step(
-            isActive: currentStep >= 2,
+            isActive: currentStep >= 1,
             title: const Text('Academic \n Info'),
             content: Container(
               child: Column(
                 children: [
                   TextField(
                     controller: Admission_Year,
+                    keyboardType: TextInputType.text,
                     decoration: const InputDecoration(border: OutlineInputBorder(),
                       labelText: 'Admission Year',
                     ),
@@ -118,6 +139,7 @@ class _RegistrationState extends State<Registration> {
                     height: 8,
                   ),  TextField(
                     controller: Expected_Gradutaion_Year,
+                    keyboardType: TextInputType.number,
                     decoration: const InputDecoration(border: OutlineInputBorder(),
                       labelText: 'Expected Gradutaion Year',
                     ),
@@ -126,6 +148,7 @@ class _RegistrationState extends State<Registration> {
                     height: 8,
                   ),  TextField(
                     controller: Branch,
+                    keyboardType: TextInputType.text,
                     decoration: const InputDecoration(border: OutlineInputBorder(),
                       labelText: 'Branch',
                     ),
@@ -134,6 +157,7 @@ class _RegistrationState extends State<Registration> {
                     height: 8,
                   ),  TextField(
                     controller: Divison,
+                    keyboardType: TextInputType.text,
                     decoration: const InputDecoration(border: OutlineInputBorder(),
                       labelText: 'Division',
                     ),
@@ -145,9 +169,11 @@ class _RegistrationState extends State<Registration> {
               ),
             )),
         Step(
-          isActive: currentStep >= 3,
+
+          isActive: currentStep >= 2,
           title: const Text('OK'),
           content: Column(
+
             children: [
               Container(
                 child: Image.asset("assets/images/Success.png"),
@@ -164,7 +190,7 @@ class _RegistrationState extends State<Registration> {
                 onPressed: () {
                   Navigator.pushReplacementNamed(context, '/');
                 },
-                child: Text('Your Request is Successfully accepted \nYou will be notified once your application is being accepted via Mail. \n\nThankyou !!'),
+                child: Text('Your Request is Successfully accepted \nYou will be notified once your application is being approved via Mail. \n\nThankyou !!'),
 
 
                 style: ElevatedButton.styleFrom(
@@ -176,7 +202,22 @@ class _RegistrationState extends State<Registration> {
                 ),
 
 
-              )],
+              ),
+  const SizedBox(height: 12),
+  ElevatedButton(
+    child: Text('SUBMIT'),
+    onPressed: (){
+      Map<String , String> Applied_Users ={
+        'Name': Name.text,
+        'Gender': Gender.text,
+        'Address':Address.text,
+        'Mobile-No':Mobile_No.text,
+        'Mail-ID':Email_ID.text,
+      };
+      dbRef.push().set(Applied_Users);
+    },
+    ),
+    ],
           ),
         ),
 
@@ -193,6 +234,7 @@ class _RegistrationState extends State<Registration> {
           title: Text("New User Registration"),
         ),
         body: Stepper(
+
             type: StepperType.horizontal,
             steps: stepList(),
             currentStep: currentStep,
@@ -210,8 +252,27 @@ class _RegistrationState extends State<Registration> {
                 setState(() => currentStep -= 1);
               }
             }
-
-        )
+//
+// controlsBuilder: (context, onStepContinue) {
+//   return Container(
+//    child: Row(
+//   children: [
+//     Expanded(child: ElevatedButton(
+//     child: Text('Next'),
+//     onPressed: onStepContinue,
+//     ),
+//     ),
+//     const SizedBox(width: 12),
+//     Expanded(child: ElevatedButton(
+//     child: Text('Cancel'),
+//     onPressed: onStepCancel,
+//     ),
+//     ),
+//     ],
+//   ),
+//   );
+// },
+        ),
     );
 
   }
