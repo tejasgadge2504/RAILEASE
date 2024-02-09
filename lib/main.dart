@@ -6,12 +6,21 @@ import 'package:mine_app/RenewalPage.dart';
 import 'package:mine_app/src/constants/colors.dart';
 import 'package:mine_app/Registration.dart';
 import 'e-history.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'firebase_options.dart';
 
 
 
+void main() async {
+   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
-
-void main()  {
+  await Permission.photos.request();
+  await Permission.camera.request();
   runApp(MyApp());
 }
 
