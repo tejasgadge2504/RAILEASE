@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mine_app/main.dart';
-import 'package:mine_app/src/constants/colors.dart';
-import 'package:mine_app/Mypage.dart';
 import 'package:file_picker/file_picker.dart';
-import 'Mypage.dart';
+
 
 class Registration extends StatefulWidget {
   @override
