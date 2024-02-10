@@ -6,17 +6,12 @@ import 'package:mine_app/src/constants/colors.dart';
 import 'package:mine_app/Registration.dart';
 import 'e-history.dart';
 
-
-
-
 void main() {
   runApp(const MyApp());
 }
-
 class MyApp extends StatelessWidget {
 
   const MyApp({Key? key}) : super(key: key);
-
 
   // This widget is the root of your application.
   @override
@@ -38,7 +33,6 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatelessWidget {
   // const MyHomePage({super.key, required this.title});
-
 
   // final String title;
 
@@ -101,12 +95,10 @@ class MyHomePage extends StatelessWidget {
             );
           } else if (List_posts[index] == 'E-History') {
     // Navigate to the TrainPassHistoryPage when 'E-History' is clicked
-    return Mypage(
-    child: List_posts[index],
-    onTap: () {
-    Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) => TrainPassHistoryPage()),
+           return Mypage(
+            child: List_posts[index],
+             onTap: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => TrainPassHistoryPage()),
     );
     },
     );

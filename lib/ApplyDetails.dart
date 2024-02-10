@@ -57,9 +57,7 @@ class ApplyDetails extends StatelessWidget {
                         padding: EdgeInsets.all(10.0),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(40.0),
-                          border: Border.all(
-                            color: Colors.black,
-                            width: 2.0,
+                          border: Border.all( color: Colors.black, width: 2.0,
                           ),
                         ),
                         child: Center(

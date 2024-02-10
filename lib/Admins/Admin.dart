@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mine_app/src/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:mine_app/src/constants/colors.dart';
+import 'package:mine_app/Admins/Concession_manage.dart';
 
 class Admin extends StatelessWidget {
 
@@ -26,7 +27,7 @@ class Admin extends StatelessWidget {
           onPressed: () {
             if (child == 'Concession Request Management') {
               // Handle navigation to Registration
-              // Navigator.of(context).push(MaterialPageRoute(builder: (context) => Registration(),));
+               Navigator.of(context).push(MaterialPageRoute(builder: (context) => Concessionmanagement(),));
             }
             if (child == 'User Management') {
               // Handle navigation to Registration

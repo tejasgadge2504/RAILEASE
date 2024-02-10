@@ -5,7 +5,7 @@ import 'package:mine_app/Admins/SlideBarA.dart';
 
 class MainPage extends StatelessWidget {
   final List<String> listPosts = [
-    'Concession Request',
+    'Concession Request Management',
     'User Management',
     'Notification Management',
     'Monthly Report',
@@ -37,7 +37,7 @@ class MainPage extends StatelessWidget {
       body: ListView.builder(
         itemCount: listPosts.length,
         itemBuilder: (context, index) {
-          if (listPosts[index] == 'Apply for Concession') {
+          if (listPosts[index] == 'Concession Request Management') {
             // Pass a callback function to handle navigation to Registration
             return Admin(
               child: listPosts[index],
