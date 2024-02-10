@@ -1,10 +1,7 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:mine_app/main.dart';
-import 'package:mine_app/src/constants/colors.dart';
-import 'package:mine_app/Mypage.dart';
 import 'package:file_picker/file_picker.dart';
-
-import 'Mypage.dart';
+import 'package:rxdart/utils.dart';
 
 class Registration extends StatefulWidget {
   @override
@@ -27,6 +24,13 @@ class _RegistrationState extends State<Registration> {
   TextEditingController Branch=TextEditingController();
   TextEditingController Divison=TextEditingController();
 
+  @override
+  void dispose(){
+
+  }
+   bool loading = false;
+  final databaseRef = FirebaseDatabase.instance.ref('Applied Users');
+
   List<String> selectedDocuments = [];
   List<Step> stepList() =>
       [
@@ -38,6 +42,7 @@ class _RegistrationState extends State<Registration> {
               children: [
                 TextField(
                   controller: Name,
+                  keyboardType: TextInputType.text,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Full Name',
@@ -83,9 +88,9 @@ class _RegistrationState extends State<Registration> {
 
                     if (result != null) {
                       List<String> paths =
-                      result.files.map((file) => file.path!).toList();
+                      result.files.map((file) => file.name ?? '').toList();
                       setState(() {
-                        selectedDocuments = paths;
+                        selectedDocuments.addAll(paths);
                       });
                     }
                   },
@@ -104,7 +109,7 @@ class _RegistrationState extends State<Registration> {
           ),
         ),
         Step(
-            isActive: currentStep >= 2,
+            isActive: currentStep >= 1,
             title: const Text('Academic \n Info'),
             content: Container(
               child: Column(
@@ -146,7 +151,7 @@ class _RegistrationState extends State<Registration> {
               ),
             )),
         Step(
-          isActive: currentStep >= 3,
+          isActive: currentStep >= 2,
           title: const Text('OK'),
           content: Column(
             children: [
@@ -160,17 +165,10 @@ class _RegistrationState extends State<Registration> {
 
               SizedBox(height: 30,),
 
+              SizedBox(height: 30),
               ElevatedButton(
                 onPressed: () {
-                  // Navigate to the home page or perform any other action
-                  // Navigator.of(context).push(
-                  //   MaterialPageRoute(
-                  //     builder: (context) =>MyHomePage()
-                  //
-                  //   ),6
-
-                  // );
-
+                  // Navigator.pushReplacementNamed(context, '/');
                 },
                 child: Text('Your Request is Successfully accepted \nYou will be notified once your application is being accepted via Mail. \n\nThankyou !!'),
 
@@ -184,7 +182,24 @@ class _RegistrationState extends State<Registration> {
                 ),
 
 
-              )],
+              ),
+              SizedBox(height: 30,),
+
+              ElevatedButton(onPressed: (){
+
+                databaseRef.child(DateTime.now().millisecondsSinceEpoch.toString()).set({
+                  'Name':Name.text.toUpperCase().toString(),
+                  'Gender':Gender.text.toString().toUpperCase(),
+                  'Address':Address.text.toString().toUpperCase(),
+                  'Mobile-No':Mobile_No.text.toString(),
+                  'Email-ID':Email_ID.text.toString(),
+                  'Admission Year':Admission_Year.text.toString(),
+                  'Graduation Year':Expected_Gradutaion_Year.text.toString(),
+                  'Branch':Branch.text.toString().toUpperCase(),
+                  'Division':Divison.text.toString().toUpperCase(),
+                });
+              }, child: Text('Submit')),
+            ],
           ),
         ),
 

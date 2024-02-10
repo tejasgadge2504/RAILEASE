@@ -2,12 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:mine_app/Mypage.dart';
 import 'package:mine_app/SlideBar.dart';
 import 'package:mine_app/Splash_Screen.dart';
+import 'package:mine_app/RenewalPage.dart';
 import 'package:mine_app/src/constants/colors.dart';
 import 'package:mine_app/Registration.dart';
 import 'e-history.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'firebase_options.dart';
 
-void main() {
-  runApp(const MyApp());
+
+
+
+void main() async {
+   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  await Permission.photos.request();
+  await Permission.camera.request();
+  runApp(MyApp());
+
 }
 class MyApp extends StatelessWidget {
 
@@ -66,7 +82,10 @@ class MyHomePage extends StatelessWidget {
             return Mypage(
               child: List_posts[index],
               onTap: () {
-
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) =>RenewalPage()),
+                );
               },
             );
           }
@@ -76,6 +95,7 @@ class MyHomePage extends StatelessWidget {
             return Mypage(
               child: List_posts[index],
               onTap: () {
+
               },
             );
           }
@@ -94,6 +114,7 @@ class MyHomePage extends StatelessWidget {
               },
             );
           } else if (List_posts[index] == 'E-History') {
+
     // Navigate to the TrainPassHistoryPage when 'E-History' is clicked
            return Mypage(
             child: List_posts[index],
@@ -103,6 +124,7 @@ class MyHomePage extends StatelessWidget {
     },
     );
     }
+
           else {
             return Mypage(
               child: List_posts[index],

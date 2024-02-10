@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mine_app/LoginPage.dart';
 import 'package:mine_app/myProfile.dart';
-import 'package:mine_app/src/constants/images.dart';
 
 class SlideBar extends StatelessWidget{
   @override
@@ -15,7 +14,7 @@ class SlideBar extends StatelessWidget{
               accountEmail: Text('tejasgadge903@gmail.com'),
             currentAccountPicture: CircleAvatar(
               child: ClipOval(child:
-              Image.asset(applogo),
+              Image.asset('assets/images/applogo1.png'),
 
               ),
             ),

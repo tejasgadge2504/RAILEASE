@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mine_app/applicationStatus.dart';
+import 'package:mine_app/RenewalPage.dart';
 import 'package:mine_app/src/constants/colors.dart';
-import 'package:mine_app/Registration.dart';
 import 'package:mine_app/stepsToApply.dart';
 import 'package:mine_app/Approval.dart';
 import 'package:mine_app/e-history.dart';
@@ -34,7 +33,7 @@ class Mypage extends StatelessWidget {
             onPressed: () {
               if (child == 'Apply for Consession') {
                 // Handle navigation to Registration
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => Registration(),));
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => RenewalPage(),));
               }
               else if (child == 'E-History') {
                 // Handle navigation to TrainPassHistoryPage (E-History page)
@@ -49,7 +48,9 @@ class Mypage extends StatelessWidget {
                 // Handle navigation to Registration
                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => Approval(),));
               } 
-
+              if (child =='Steps to Apply'){
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) =>MyStepsPage()));
+              }
               else {
 
                 // Handle other actions if needed
