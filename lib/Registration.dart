@@ -186,7 +186,7 @@ class _RegistrationState extends State<Registration> {
               SizedBox(height: 30,),
 
               ElevatedButton(onPressed: (){
-
+  
                 databaseRef.child(DateTime.now().millisecondsSinceEpoch.toString()).set({
                   'Name':Name.text.toUpperCase().toString(),
                   'Gender':Gender.text.toString().toUpperCase(),
