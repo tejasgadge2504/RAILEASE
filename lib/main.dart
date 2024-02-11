@@ -13,6 +13,7 @@ import 'firebase_options.dart';
 
 
 
+
 void main() async {
    WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -22,12 +23,11 @@ void main() async {
   await Permission.photos.request();
   await Permission.camera.request();
   runApp(MyApp());
-}
 
+}
 class MyApp extends StatelessWidget {
 
   const MyApp({Key? key}) : super(key: key);
-
 
   // This widget is the root of your application.
   @override
@@ -49,7 +49,6 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatelessWidget {
   // const MyHomePage({super.key, required this.title});
-
 
   // final String title;
 
@@ -115,17 +114,17 @@ class MyHomePage extends StatelessWidget {
               },
             );
           } else if (List_posts[index] == 'E-History') {
-            // Navigate to the TrainPassHistoryPage when 'E-History' is clicked
-            return Mypage(
-              child: List_posts[index],
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => TrainPassHistoryPage()),
-                );
-              },
-            );
-          }
+
+    // Navigate to the TrainPassHistoryPage when 'E-History' is clicked
+           return Mypage(
+            child: List_posts[index],
+             onTap: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => TrainPassHistoryPage()),
+    );
+    },
+    );
+    }
+
           else {
             return Mypage(
               child: List_posts[index],
