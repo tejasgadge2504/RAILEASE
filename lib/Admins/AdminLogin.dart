@@ -4,6 +4,8 @@ import 'package:mine_app/Admins/MainPage.dart';
 import 'package:mine_app/src/constants/colors.dart';
 import 'package:mine_app/src/constants/strings.dart';
 
+import 'Admin.dart';
+
 class AdminLogin extends StatelessWidget {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();

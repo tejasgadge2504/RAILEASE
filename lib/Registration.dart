@@ -268,7 +268,7 @@ class _RegistrationState extends State<Registration> {
           title: Text("New User Registration"),
         ),
         body: Stepper(
-            type: StepperType.horizontal,
+            type: StepperType.vertical,
             steps: stepList(),
             currentStep: currentStep,
             onStepContinue: () {

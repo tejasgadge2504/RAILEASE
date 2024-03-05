@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mine_app/Admins/Concession_manage.dart';
+import 'package:mine_app/Admins/MonthlyReportPage.dart';
+import 'package:mine_app/Admins/RegisteredUsers.dart';
 import 'package:mine_app/src/constants/colors.dart';
 import 'package:mine_app/Admins/Admin.dart';
 import 'package:mine_app/Admins/SlideBarA.dart';
@@ -6,7 +9,7 @@ import 'package:mine_app/Admins/SlideBarA.dart';
 class MainPage extends StatelessWidget {
   final List<String> listPosts = [
     'Concession Request Management',
-    'User Management',
+    'Reg Management',
     'Notification Management',
     'Monthly Report',
   ];
@@ -42,22 +45,48 @@ class MainPage extends StatelessWidget {
             return Admin(
               child: listPosts[index],
               onTap: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => Registration()),
-                // );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => RegUsers()),
+                );
               },
             );
           }
 
-          else if (listPosts[index] == 'Steps to Apply') {
+          else if (listPosts[index] == 'Reg Management') {
+            // Pass a callback function to handle navigation to Registration
+            return Admin(
+              child: listPosts[index],
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => RegUsers() ),
+                );
+              },
+            );
+          }
+
+          else if (listPosts[index] == 'Monthly Report') {
+            // Pass a callback function to handle navigation to Registration
+            return Admin(
+              child: listPosts[index],
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MonthlyReportPage()),
+                );
+              },
+            );
+          }
+
+          else if (listPosts[index] == 'Notification Management') {
             // Pass a callback function to handle navigation to Registration
             return Admin(
               child: listPosts[index],
               onTap: () {
                 // Navigator.push(
                 //   context,
-                //   MaterialPageRoute(builder: (context) => MyStepsPage()),
+                //   MaterialPageRoute(builder: (context) => MonthlyReportPage()),
                 // );
               },
             );
@@ -68,10 +97,10 @@ class MainPage extends StatelessWidget {
             return Admin(
               child: listPosts[index],
               onTap: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => MyStepsPage()),
-                // );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MonthlyReportPage()),
+                );
               },
             );
           }
