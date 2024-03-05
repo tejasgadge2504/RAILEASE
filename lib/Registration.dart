@@ -24,13 +24,15 @@ class _RegistrationState extends State<Registration> {
   TextEditingController Branch=TextEditingController();
   TextEditingController Divison=TextEditingController();
   TextEditingController VES_ID = TextEditingController();
+  TextEditingController RollNo = TextEditingController();
+
 
   // @override
   // void dispose(){
   //
   // }
    bool loading = false;
-  final databaseRef = FirebaseDatabase.instance.ref('Applied Users');
+  final databaseRef = FirebaseDatabase.instance.ref('Reg Users');
 
   List<String> selectedDocuments = [];
   List<Step> stepList() =>
@@ -52,6 +54,8 @@ class _RegistrationState extends State<Registration> {
                 const SizedBox(height: 8),
                 TextField(
                   controller: Gender,
+                  keyboardType: TextInputType.text,
+
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Gender',
@@ -60,6 +64,8 @@ class _RegistrationState extends State<Registration> {
                 const SizedBox(height: 8),
                 TextField(
                   controller: Address,
+                  keyboardType: TextInputType.text,
+
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Address ',
@@ -68,6 +74,8 @@ class _RegistrationState extends State<Registration> {
                 const SizedBox(height: 8),
                 TextField(
                   controller: Mobile_No,
+                  keyboardType: TextInputType.number,
+
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Mobile-No',
@@ -76,6 +84,8 @@ class _RegistrationState extends State<Registration> {
                 const SizedBox(height: 8),
                 TextField(
                   controller: Email_ID,
+                  keyboardType: TextInputType.text,
+
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Email-ID(other than ves-id)',
@@ -117,6 +127,8 @@ class _RegistrationState extends State<Registration> {
                 children: [
                   TextField(
                     controller: VES_ID,
+                    keyboardType: TextInputType.text,
+
                     decoration: const InputDecoration(border: OutlineInputBorder(),
                       labelText: 'VES-ID',
                     ),
@@ -126,6 +138,8 @@ class _RegistrationState extends State<Registration> {
                   ),
                   TextField(
                     controller: Admission_Year,
+                    keyboardType: TextInputType.number,
+
                     decoration: const InputDecoration(border: OutlineInputBorder(),
                       labelText: 'Admission Year',
                     ),
@@ -134,6 +148,8 @@ class _RegistrationState extends State<Registration> {
                     height: 8,
                   ),  TextField(
                     controller: Expected_Gradutaion_Year,
+                    keyboardType: TextInputType.number,
+
                     decoration: const InputDecoration(border: OutlineInputBorder(),
                       labelText: 'Expected Gradutaion Year',
                     ),
@@ -142,6 +158,8 @@ class _RegistrationState extends State<Registration> {
                     height: 8,
                   ),  TextField(
                     controller: Branch,
+                    keyboardType: TextInputType.text,
+
                     decoration: const InputDecoration(border: OutlineInputBorder(),
                       labelText: 'Branch',
                     ),
@@ -150,6 +168,8 @@ class _RegistrationState extends State<Registration> {
                     height: 8,
                   ),  TextField(
                     controller: Divison,
+                    keyboardType: TextInputType.text,
+
                     decoration: const InputDecoration(border: OutlineInputBorder(),
                       labelText: 'Division',
                     ),
@@ -157,63 +177,83 @@ class _RegistrationState extends State<Registration> {
                   const SizedBox(
                     height: 8,
                   ),
+                  TextField(
+                    controller: RollNo,
+                    keyboardType: TextInputType.number,
+
+                    decoration: const InputDecoration(border: OutlineInputBorder(),
+                      labelText: 'Roll Number',
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  ElevatedButton(onPressed: (){
+
+                    if(Name.text.isEmpty||Gender.text.isEmpty||Address.text.isEmpty||Mobile_No.text.isEmpty||Email_ID.text.isEmpty||VES_ID.text.isEmpty||Admission_Year.text.isEmpty||Expected_Gradutaion_Year.text.isEmpty||Branch.text.isEmpty||Divison.text.isEmpty||RollNo.text.isEmpty){
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Please Fill all the Fields correctly'),
+                      duration: Duration(seconds: 2),));
+                      return;  // dont proceed adding data
+                    }
+
+                    String PriKey = RollNo.text + "_" + Divison.text;
+
+                    databaseRef.child(PriKey).set({
+                      'Name':Name.text.toUpperCase().toString(),
+                      'Gender':Gender.text.toString().toUpperCase(),
+                      'Address':Address.text.toString().toUpperCase(),
+                      'Mobile-No':Mobile_No.text.toString(),
+                      'Email-ID':Email_ID.text.toString(),
+                      'VES_ID':VES_ID.text.toLowerCase().toString(),
+                      'Admission Year':Admission_Year.text.toString(),
+                      'Graduation Year':Expected_Gradutaion_Year.text.toString(),
+                      'Branch':Branch.text.toString().toUpperCase(),
+                      'Division':Divison.text.toString().toUpperCase(),
+                      'Roll No':RollNo.text.toString().toUpperCase(),
+                    });
+                  }, child: Text('Submit')),
                 ],
               ),
             )),
-        Step(
-          isActive: currentStep >= 2,
-          title: const Text('OK'),
-          content: Column(
-            children: [
-              Container(
-                child: Image.asset("assets/images/Success.png"),
-                height:150 ,
-              ),
-              // Image.asset("assets/Success.png"),
-              // const SizedBox(height: 16),
+        // Step(
+        //   isActive: currentStep >= 2,
+        //   title: const Text('OK'),
+        //   content: Column(
+        //     children: [
+        //       Container(
+        //         child: Image.asset("assets/images/Success.png"),
+        //         height:150 ,
+        //       ),
+        //       // Image.asset("assets/Success.png"),
+        //       // const SizedBox(height: 16),
+        //
+        //
+        //       SizedBox(height: 30,),
+        //
+        //       SizedBox(height: 30),
+        //       ElevatedButton(
+        //         onPressed: () {
+        //           // Navigator.pushReplacementNamed(context, '/');
+        //         },
+        //         child: Text('Your Request is Successfully accepted \nYou will be notified once your application is being accepted via Mail. \n\nThankyou !!'),
+        //
+        //
+        //         style: ElevatedButton.styleFrom(
+        //           primary: Colors.blue,
+        //           onPrimary: Colors.white,
+        //           padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0 - 9.0),
+        //
+        //
+        //         ),
+        //
+        //
+        //       ),
+        //       SizedBox(height: 30,),
+        //
 
-
-              SizedBox(height: 30,),
-
-              SizedBox(height: 30),
-              ElevatedButton(
-                onPressed: () {
-                  // Navigator.pushReplacementNamed(context, '/');
-                },
-                child: Text('Your Request is Successfully accepted \nYou will be notified once your application is being accepted via Mail. \n\nThankyou !!'),
-
-
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.blue,
-                  onPrimary: Colors.white,
-                  padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0 - 9.0),
-
-
-                ),
-
-
-              ),
-              SizedBox(height: 30,),
-
-              ElevatedButton(onPressed: (){
-                String vesid = VES_ID.toString().toLowerCase();
-  
-                databaseRef.child(vesid).set({
-                  'Name':Name.text.toUpperCase().toString(),
-                  'Gender':Gender.text.toString().toUpperCase(),
-                  'Address':Address.text.toString().toUpperCase(),
-                  'Mobile-No':Mobile_No.text.toString(),
-                  'Email-ID':Email_ID.text.toString(),
-                  'VES_ID':VES_ID.text.toLowerCase().toString(),
-                  'Admission Year':Admission_Year.text.toString(),
-                  'Graduation Year':Expected_Gradutaion_Year.text.toString(),
-                  'Branch':Branch.text.toString().toUpperCase(),
-                  'Division':Divison.text.toString().toUpperCase(),
-                });
-              }, child: Text('Submit')),
-            ],
-          ),
-        ),
+        //     ],
+        //   ),
+        // ),
 
 
       ];
