@@ -63,7 +63,7 @@ class MainPage extends StatelessWidget {
             );
           }
 
-          else if (listPosts[index] == 'Application Status') {
+          else if (listPosts[index] == 'Monthly Report') {
             // Pass a callback function to handle navigation to Registration
             return Admin(
               child: listPosts[index],

@@ -23,11 +23,12 @@ class _RegistrationState extends State<Registration> {
   TextEditingController Expected_Gradutaion_Year=TextEditingController();
   TextEditingController Branch=TextEditingController();
   TextEditingController Divison=TextEditingController();
+  TextEditingController VES_ID = TextEditingController();
 
-  @override
-  void dispose(){
-
-  }
+  // @override
+  // void dispose(){
+  //
+  // }
    bool loading = false;
   final databaseRef = FirebaseDatabase.instance.ref('Applied Users');
 
@@ -115,6 +116,15 @@ class _RegistrationState extends State<Registration> {
               child: Column(
                 children: [
                   TextField(
+                    controller: VES_ID,
+                    decoration: const InputDecoration(border: OutlineInputBorder(),
+                      labelText: 'VES-ID',
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  TextField(
                     controller: Admission_Year,
                     decoration: const InputDecoration(border: OutlineInputBorder(),
                       labelText: 'Admission Year',
@@ -186,13 +196,15 @@ class _RegistrationState extends State<Registration> {
               SizedBox(height: 30,),
 
               ElevatedButton(onPressed: (){
-
-                databaseRef.child(DateTime.now().millisecondsSinceEpoch.toString()).set({
+                String vesid = VES_ID.toString().toLowerCase();
+  
+                databaseRef.child(vesid).set({
                   'Name':Name.text.toUpperCase().toString(),
                   'Gender':Gender.text.toString().toUpperCase(),
                   'Address':Address.text.toString().toUpperCase(),
                   'Mobile-No':Mobile_No.text.toString(),
                   'Email-ID':Email_ID.text.toString(),
+                  'VES_ID':VES_ID.text.toLowerCase().toString(),
                   'Admission Year':Admission_Year.text.toString(),
                   'Graduation Year':Expected_Gradutaion_Year.text.toString(),
                   'Branch':Branch.text.toString().toUpperCase(),
