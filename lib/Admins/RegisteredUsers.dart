@@ -3,7 +3,8 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
-import '';
+import 'package:mailer/mailer.dart';
+import 'package:mailer/smtp_server/gmail.dart';
 
 class RegUsers extends StatefulWidget {
   const RegUsers({Key? key}) : super(key: key);
@@ -17,6 +18,27 @@ class _RegUsersState extends State<RegUsers> {
   Query dbRef = FirebaseDatabase.instance.ref().child('Reg Users');
   DatabaseReference reference = FirebaseDatabase.instance.ref().child('Reg Users');
   DatabaseReference approvedUsersReference = FirebaseDatabase.instance.ref().child('Approved Users');
+
+
+  Future<void> sendEmailConfirmation(String vesId,String pass,String name) async {
+    String username = 'teaminspire2226@gmail.com'; // Replace with your email
+    String password = 'xdrc zrav loyu yvsf'; // Replace with your email password
+
+    final smtpServer = gmail(username, password);
+
+    final message = Message()
+      ..from = Address(username, 'RAILEASE - TEJAS GADGE ')
+      ..recipients.add(vesId) // Assuming vesId is the email address
+      ..subject = 'Approval Confirmation'
+      ..text = 'Congratulations ${name}! \n Your registration has been approved.\n You can now login using following Credentials \n login: ${vesId}\n Password:${pass}\n Thankyou\n Team RAILEASE';
+
+    try {
+      await send(message, smtpServer);
+      print('Email sent successfully');
+    } catch (error) {
+      print('Error sending email: $error');
+    }
+  }
 
 
   Widget listItem({required Map student}) {
@@ -76,6 +98,9 @@ class _RegUsersState extends State<RegUsers> {
                   // Move the approved user to the 'Approved Users' database
                   reference.child(student['Key']).remove(); // Remove from 'Reg Users'
                   approvedUsersReference.child(student['Key']).set(student); // Add to 'Approved Users'
+
+                  // Send email confirmation
+                  sendEmailConfirmation(student['VES_ID'],student['Mobile-No'],student['Name']);
 
                 },
                 child: Row(
