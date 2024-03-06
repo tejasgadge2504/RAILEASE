@@ -47,7 +47,7 @@ class MainPage extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => RegUsers()),
+                  MaterialPageRoute(builder: (context) => Concessionmanagement()),
                 );
               },
             );
