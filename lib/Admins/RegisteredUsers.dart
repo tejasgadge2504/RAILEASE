@@ -5,6 +5,7 @@ import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 import 'package:mailer/mailer.dart';
 import 'package:mailer/smtp_server/gmail.dart';
+import 'package:mine_app/Admins/viewMore.dart';
 
 class RegUsers extends StatefulWidget {
   const RegUsers({Key? key}) : super(key: key);
@@ -120,10 +121,10 @@ class _RegUsersState extends State<RegUsers> {
               ),
               GestureDetector(
                 onTap: () {
-                  // Navigator.push(
-                  //   context as BuildContext,
-                  //   MaterialPageRoute(builder: (context) =>viewMore),
-                  // );
+                  Navigator.push(
+                    context as BuildContext,
+                    MaterialPageRoute(builder: (context) => ViewMore(userData: student) ),
+                  );
                   //SEEN THE DETAILS
 
                 },

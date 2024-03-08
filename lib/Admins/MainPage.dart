@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mine_app/Admins/Concession_manage.dart';
 import 'package:mine_app/Admins/MonthlyReportPage.dart';
 import 'package:mine_app/Admins/RegisteredUsers.dart';
+import 'package:mine_app/Admins/approvedUsers.dart';
 import 'package:mine_app/src/constants/colors.dart';
 import 'package:mine_app/Admins/Admin.dart';
 import 'package:mine_app/Admins/SlideBarA.dart';
@@ -9,8 +10,8 @@ import 'package:mine_app/Admins/SlideBarA.dart';
 class MainPage extends StatelessWidget {
   final List<String> listPosts = [
     'Concession Request Management',
-    'Reg Management',
-    'Notification Management',
+    'Registered Users',
+    'Approved Users ',
     'Monthly Report',
   ];
 
@@ -53,7 +54,7 @@ class MainPage extends StatelessWidget {
             );
           }
 
-          else if (listPosts[index] == 'Reg Management') {
+          else if (listPosts[index] == 'Registered Users') {
             // Pass a callback function to handle navigation to Registration
             return Admin(
               child: listPosts[index],
@@ -79,15 +80,15 @@ class MainPage extends StatelessWidget {
             );
           }
 
-          else if (listPosts[index] == 'Notification Management') {
+          else if (listPosts[index] == 'Approved Users') {
             // Pass a callback function to handle navigation to Registration
             return Admin(
               child: listPosts[index],
               onTap: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => MonthlyReportPage()),
-                // );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ApprovedUsers()),
+                );
               },
             );
           }
