@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mine_app/Admins/RegisteredUsers.dart';
+import 'package:mine_app/Admins/approvedUsers.dart';
 import 'package:mine_app/src/constants/colors.dart';
 import 'package:mine_app/Admins/Concession_manage.dart';
 
@@ -28,13 +29,13 @@ class Admin extends StatelessWidget {
               // Handle navigation to Registration
                Navigator.of(context).push(MaterialPageRoute(builder: (context) => Concessionmanagement(),));
             }
-            if (child == 'Reg Management') {
+            if (child == 'Registered Users') {
               // Handle navigation to Registration
               Navigator.of(context).push(MaterialPageRoute(builder: (context) => RegUsers(),));
             }
-            if (child == 'Notification Management ') {
+            if (child == 'Approved Users ') {
               // Handle navigation to Registration
-              // Navigator.of(context).push(MaterialPageRoute(builder: (context) => MyStepsPage(),));
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => ApprovedUsers(),));
             }
             if (child == 'Monthly Report') {
               // Handle navigation to Registration

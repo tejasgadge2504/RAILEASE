@@ -95,6 +95,7 @@ class _MyHomePageState extends State<MyHomePage> {
           if (List_posts[index] == 'Apply for Concession') {
             // Pass a callback function to handle navigation to Registration
             return Mypage(
+              userData: widget.userData,
               child: List_posts[index],
               onTap: () {
                 Navigator.push(
@@ -108,6 +109,8 @@ class _MyHomePageState extends State<MyHomePage> {
           else if (List_posts[index] == 'Steps to Apply') {
             // Pass a callback function to handle navigation to Registration
             return Mypage(
+              userData: widget.userData,
+
               child: List_posts[index],
               onTap: () {
 
@@ -118,6 +121,8 @@ class _MyHomePageState extends State<MyHomePage> {
           else if (List_posts[index] == 'Application Status') {
             // Pass a callback function to handle navigation to Registration
             return Mypage(
+              userData: widget.userData,
+
               child: List_posts[index],
               onTap: () {
 
@@ -132,9 +137,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
             // Navigate to the TrainPassHistoryPage when 'E-History' is clicked
             return Mypage(
+              userData: widget.userData,
+
               child: List_posts[index],
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => TrainPassHistoryPage()),
+                Navigator.push(context, MaterialPageRoute(builder: (context) => TrainPassHistoryPage(userData: widget.userData,)),
                 );
               },
             );
@@ -142,6 +149,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
           else {
             return Mypage(
+              userData: widget.userData,
+
               child: List_posts[index],
               onTap: () {},
             );
