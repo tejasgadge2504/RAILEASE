@@ -43,7 +43,7 @@ class _MypageState extends State<Mypage> {
             onPressed: () {
               if (widget.child == 'Apply for Consession') {
                 // Handle navigation to Registration
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => RenewalPage(),));
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => RenewalPage(userData: widget.userData,),));
               }
               else if (widget.child == 'E-History') {
                 // Handle navigation to TrainPassHistoryPage (E-History page)

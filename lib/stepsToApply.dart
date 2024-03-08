@@ -14,16 +14,7 @@ class MyStepsPage extends StatelessWidget {
           color: Colors.white,
         ),
         ),
-        actions: [
-          Row(
-            children: [
-              Text('Welcome User', style: TextStyle(color: Colors.white,),
-              ),
-              IconButton(onPressed: (){}, icon:Icon(Icons.person_2_rounded))
-            ],
-          )
 
-        ],
       ),
       body: Container(
         padding: EdgeInsets.all(16.0),
