@@ -1,14 +1,22 @@
 import 'package:flutter/material.dart';
 
 class TrainPassHistoryPage extends StatefulWidget {
+
+  final Map<dynamic, dynamic> userData;
+
+  TrainPassHistoryPage({Key? key, required this.userData}) : super(key: key);
+
+
   @override
   _TrainPassHistoryPageState createState() => _TrainPassHistoryPageState();
 }
 
 class _TrainPassHistoryPageState extends State<TrainPassHistoryPage> {
   List<TrainPassApplication> passHistory = [
-    TrainPassApplication('Jan', 'Monthly Pass', '2022-01-01', '123', '456'),
-    TrainPassApplication('Feb', 'Quaterly Pass', '2022-02-15', '789', '012'),
+    TrainPassApplication('-', '- ', '-', '-', '-'),
+
+    // TrainPassApplication('Jan', 'Monthly Pass', '2022-01-01', '123', '456'),
+    // TrainPassApplication('Feb', 'Quaterly Pass', '2022-02-15', '789', '012'),
     // Add more entries as needed
   ];
 
@@ -26,7 +34,7 @@ class _TrainPassHistoryPageState extends State<TrainPassHistoryPage> {
             Row(
               children: [
                 SizedBox(width: 10),
-                _buildInfoBox('Name: Deepak Kumbhar'),
+                _buildInfoBox('Name: ${widget.userData['Name']}'),
               ],
             ),
             SizedBox(width: 10),
@@ -34,16 +42,16 @@ class _TrainPassHistoryPageState extends State<TrainPassHistoryPage> {
               margin: EdgeInsets.symmetric(horizontal: 6.0),
               child: Column(
                 children: [
-                  _buildInfoBox("Address:D/302, Vinayakeshwar Complex,avinash Gaikwad NagarGaondevi Road,near Shiv Mandir,Badlapur (east)")
+                  _buildInfoBox("Address: ${widget.userData['Address']}")
                 ],
               ),
             ),
             Row(
               children: [
                 SizedBox(width: 10),
-                _buildInfoBox('Division: D7B'),
+                _buildInfoBox('Division: ${widget.userData['Division']} - ${widget.userData['Branch']}'),
                 SizedBox(width: 10),
-                _buildInfoBox('Gender: Male'),
+                _buildInfoBox('Gender: ${widget.userData['Gender']}'),
               ],
             ),
             Container(
@@ -52,28 +60,30 @@ class _TrainPassHistoryPageState extends State<TrainPassHistoryPage> {
 
                 children: [
                    SizedBox(width: 10),
-                  _buildInfoBox('DOB: 2004-08-05'),
+                  _buildInfoBox('VES-ID: ${widget.userData['VES_ID']}'),
                 ],
               ),
             ),
-            Row(
-              children: [
-                SizedBox(width: 10),
-                _buildInfoBox('From Station: Badlapur'),
-                SizedBox(width: 10),
-                _buildInfoBox('To Station: Kurla'),
-              ],
-            ),
+
             SizedBox(width: 10),
             Container(
               margin: EdgeInsets.symmetric(horizontal: 6.0),
               child: Column(
                 children: [
                   SizedBox(width: 10),
-                  _buildInfoBox("Railway Zone:Central")
+                  _buildInfoBox("Alternate E-Mail: ${widget.userData['Email-ID']}")
                 ],
               ),
             ),
+            Row(
+              children: [
+                SizedBox(width: 10),
+                _buildInfoBox('From Station: ${widget.userData['Address']}'),
+                SizedBox(width: 10),
+                _buildInfoBox('To Station: KURLA'),
+              ],
+            ),
+
 
             SizedBox(height: 20),
             SingleChildScrollView(
@@ -86,7 +96,8 @@ class _TrainPassHistoryPageState extends State<TrainPassHistoryPage> {
                   DataColumn(label: Text('Pass Number')),
                   DataColumn(label: Text('Previous Pass Number')),
                 ],
-                rows: passHistory.map((application) {
+                rows:
+                passHistory.map((application) {
                   return DataRow(
                     cells: [
                       DataCell(Text(application.month)),
