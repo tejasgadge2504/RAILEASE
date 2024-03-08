@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:mine_app/Admins/RegisteredUsers.dart';
 import 'package:mine_app/src/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:mine_app/src/constants/colors.dart';
-
-import 'MonthlyReportPage.dart';
+import 'package:mine_app/Admins/Concession_manage.dart';
 
 class Admin extends StatelessWidget {
+
   final String child;
   final VoidCallback onTap;
 
@@ -22,29 +23,24 @@ class Admin extends StatelessWidget {
           color: tbutton_widget_color,
           borderRadius: BorderRadius.circular(20.0),
         ),
-        child: ElevatedButton(
+        child:
+        ElevatedButton(
           onPressed: () {
-            // Use Navigator to navigate to the respective page
             if (child == 'Concession Request Management') {
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(builder: (context) => ConcessionRequestPage()),
-              // );
-            } else if (child == 'User Management') {
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(builder: (context) => UserManagementPage()),
-              // );
-            } else if (child == 'Notification Management') {
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(builder: (context) => NotificationManagementPage()),
-              // );
-            } else if (child == 'Monthly Report') {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => MonthlyReportPage()),
-              );
+              // Handle navigation to Registration
+               Navigator.of(context).push(MaterialPageRoute(builder: (context) => Concessionmanagement(),));
+            }
+            if (child == 'Reg Management') {
+              // Handle navigation to Registration
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => RegUsers(),));
+            }
+            if (child == 'Notification Management ') {
+              // Handle navigation to Registration
+              // Navigator.of(context).push(MaterialPageRoute(builder: (context) => MyStepsPage(),));
+            }
+            if (child == 'Monthly Report') {
+              // Handle navigation to Registration
+              // Navigator.of(context).push(MaterialPageRoute(builder: (context) => ApplicationStatus(),));
             } else {
               // Handle other actions if needed
             }
@@ -58,3 +54,4 @@ class Admin extends StatelessWidget {
     );
   }
 }
+

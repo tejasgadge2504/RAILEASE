@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mine_app/Admins/AdminLogin.dart';
+import 'package:mine_app/Admins/AdminProfile.dart';
 import 'package:mine_app/Admins/MainPage.dart';
 import 'package:mine_app/LoginPage.dart';
 import 'package:mine_app/src/constants/images.dart';
@@ -28,10 +29,10 @@ class SlideBarA extends StatelessWidget {
               children: [
                 InkWell(
                   onTap: () {
-                    // Navigator.pushReplacement(
-                    //   context,
-                    //   MaterialPageRoute(builder: (context) => ProfilePage()),
-                    // );
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => AdminProfilePage()),
+                    );
                   },
                   child: Row(
                     children: [

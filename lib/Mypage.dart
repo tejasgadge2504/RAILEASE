@@ -40,9 +40,9 @@ class Mypage extends StatelessWidget {
                 Navigator.of(context).push(MaterialPageRoute(builder: (context) => TrainPassHistoryPage()));
               }
 
-              if (child == 'E-History') {
+              if (child == 'Steps to Apply') {
                 // Handle navigation to Registration
-                // Navigator.of(context).push(MaterialPageRoute(builder: (context) => MyStepsPage(),));
+                 Navigator.of(context).push(MaterialPageRoute(builder: (context) => MyStepsPage(),));
               }
               if (child == 'Application Status') {
                 // Handle navigation to Registration

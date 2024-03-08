@@ -58,13 +58,13 @@ class Welcome_Screen extends StatelessWidget {
                   'Student',
                   style: TextStyle(fontSize: 30, fontWeight: FontWeight.w400,color: Colors.white),
                 ),
-                SizedBox(height: 65),
+                SizedBox(height: height*0.08),
                 Text(
                   'Please Kindly Login or SignUp on the App',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500,color: Colors.white),
                   textAlign: TextAlign.center,
                 ),
-                SizedBox(height: height * 0.06),
+                SizedBox(height: (height * 0.06)-9),
                 Row(
                   children: [
                     SizedBox(width: width * 0.1),
@@ -96,8 +96,10 @@ class Welcome_Screen extends StatelessWidget {
                     SizedBox(width: width * 0.1),
                   ],
                 ),
-                SizedBox(height: height * 0.03),
-                Text('OR'),
+
+                SizedBox(height: (height * 0.03)-9),
+                Text('OR',style: TextStyle(color: Colors.white),),
+
                 SizedBox(height: (height * 0.03)-9),
                 SizedBox(
                   width: width * 0.5,

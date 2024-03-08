@@ -6,19 +6,28 @@ import 'package:mine_app/RenewalPage.dart';
 import 'package:mine_app/src/constants/colors.dart';
 import 'package:mine_app/Registration.dart';
 import 'e-history.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'firebase_options.dart';
 
 
 
 
+void main() async {
+   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
-void main()  {
+  await Permission.photos.request();
+  await Permission.camera.request();
   runApp(MyApp());
-}
 
+}
 class MyApp extends StatelessWidget {
 
   const MyApp({Key? key}) : super(key: key);
-
 
   // This widget is the root of your application.
   @override
@@ -40,7 +49,6 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatelessWidget {
   // const MyHomePage({super.key, required this.title});
-
 
   // final String title;
 
@@ -106,17 +114,17 @@ class MyHomePage extends StatelessWidget {
               },
             );
           } else if (List_posts[index] == 'E-History') {
+
     // Navigate to the TrainPassHistoryPage when 'E-History' is clicked
-    return Mypage(
-    child: List_posts[index],
-    onTap: () {
-    Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) => TrainPassHistoryPage()),
+           return Mypage(
+            child: List_posts[index],
+             onTap: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => TrainPassHistoryPage()),
     );
     },
     );
     }
+
           else {
             return Mypage(
               child: List_posts[index],
