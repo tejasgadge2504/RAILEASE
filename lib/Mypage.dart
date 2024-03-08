@@ -7,15 +7,25 @@ import 'package:mine_app/e-history.dart';
 
 
 
-class Mypage extends StatelessWidget {
+class Mypage extends StatefulWidget {
 
 
   final String child;
   final VoidCallback onTap;
 
 
-  Mypage({required this.child, required this.onTap});
+  final Map<dynamic, dynamic> userData;
 
+  Mypage({Key? key, required this.userData,required this.child, required this.onTap}) : super(key: key);
+
+
+  // Mypage({});
+
+  @override
+  State<Mypage> createState() => _MypageState();
+}
+
+class _MypageState extends State<Mypage> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -31,24 +41,24 @@ class Mypage extends StatelessWidget {
         child:
            ElevatedButton(
             onPressed: () {
-              if (child == 'Apply for Consession') {
+              if (widget.child == 'Apply for Consession') {
                 // Handle navigation to Registration
                 Navigator.of(context).push(MaterialPageRoute(builder: (context) => RenewalPage(),));
               }
-              else if (child == 'E-History') {
+              else if (widget.child == 'E-History') {
                 // Handle navigation to TrainPassHistoryPage (E-History page)
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => TrainPassHistoryPage()));
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => TrainPassHistoryPage(userData: widget.userData ,)));
               }
 
-              if (child == 'Steps to Apply') {
+              if (widget.child == 'Steps to Apply') {
                 // Handle navigation to Registration
                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => MyStepsPage(),));
               }
-              if (child == 'Application Status') {
+              if (widget.child == 'Application Status') {
                 // Handle navigation to Registration
                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => Approval(),));
-              } 
-              if (child =='Steps to Apply'){
+              }
+              if (widget.child =='Steps to Apply'){
                 Navigator.of(context).push(MaterialPageRoute(builder: (context) =>MyStepsPage()));
               }
               else {
@@ -57,7 +67,7 @@ class Mypage extends StatelessWidget {
               }
             },
     child: Text(
-      child,
+      widget.child,
     style: TextStyle(fontSize: 32),
     ),
     ),
