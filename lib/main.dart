@@ -100,7 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) =>RenewalPage()),
+                  MaterialPageRoute(builder: (context) =>RenewalPage(userData:widget.userData,)),
                 );
               },
             );
