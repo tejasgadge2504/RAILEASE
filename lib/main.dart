@@ -67,20 +67,21 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
 // Access VES_ID from widget.userData
-    String vesId = widget.userData['VES_ID'];
+    String vesId = widget.userData['Name'];
 
 
     var size = MediaQuery.of(context).size;
 
     return Scaffold(
-      drawer: SlideBar(),
+      drawer: SlideBar(userData: widget.userData,),
       appBar: AppBar(
         backgroundColor: tAppbar_color.shade200,
         title: Text('RAILEASE'),
         actions: [
           Row(
+
             children: [
-              Text('Welcome $vesId'),
+              Text('Welcome \n ${widget.userData['VES_ID']}'),
               IconButton(onPressed: () {
                 // print( Text('VES_ID: $vesId'),);
               }, icon: Icon(Icons.person_2_rounded))
