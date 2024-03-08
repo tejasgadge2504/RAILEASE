@@ -157,14 +157,23 @@ class LoginPage extends StatelessWidget {
 
     try {
       DatabaseEvent event = await approvedUsersReference.once();
-    DataSnapshot snapshot = event.snapshot;
-    Map<dynamic, dynamic>? approvedUsersData = snapshot.value as Map<dynamic, dynamic>?;
+      DataSnapshot snapshot = event.snapshot;
+      Map<dynamic, dynamic>? approvedUsersData = snapshot.value as Map<dynamic, dynamic>?;
 
-    if (approvedUsersData != null) {
+      if (approvedUsersData != null) {
         approvedUsersData.forEach((key, value) {
           if (value['VES_ID'] == enteredVESID &&
               value['Mobile-No'] == enteredMobileNo) {
-            Navigator.of(context).pushReplacement(_createRoute());
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(
+                builder: (context) => MyHomePage(userData: value),
+              ),
+            );
+
+            // Navigator.of(context).pushReplacement(_createRoute(approvedUsersData));
+            //
+
+            // Navigator.of(context).pushReplacement(_createRoute());
             return;
           }
           else{
@@ -173,10 +182,10 @@ class LoginPage extends StatelessWidget {
           }
         });
       }
-    else{
-      showInvalidCredentialsDialog(context);
+      else{
+        showInvalidCredentialsDialog(context);
 
-    }
+      }
     } catch (error) {
       print("Error fetching data: $error");
       showInvalidCredentialsDialog(context);
@@ -207,24 +216,30 @@ class LoginPage extends StatelessWidget {
   }
 
 
-  Route _createRoute() {
-    return PageRouteBuilder(
-      pageBuilder: (context, animation, secondaryAnimation) => MyHomePage(),
-      transitionsBuilder: (context, animation, secondaryAnimation, child) {
-        const begin = Offset(0.0, 1.0);
-        const end = Offset.zero;
-        const curve = Curves.easeIn;
+  // Route _createRoute() {
+  //   return PageRouteBuilder(
+  //     pageBuilder: (context, animation, secondaryAnimation) => MyHomePage(),
+  //     transitionsBuilder: (context, animation, secondaryAnimation, child) {
+  //       const begin = Offset(0.0, 1.0);
+  //       const end = Offset.zero;
+  //       const curve = Curves.easeIn;
+  //
+  //       var tween = Tween(begin: begin, end: end).chain(
+  //           CurveTween(curve: curve));
+  //
+  //       return SlideTransition(
+  //         position: animation.drive(tween),
+  //         child: child,
+  //       );
+  //     },
+  //   );
+  // }
 
-        var tween = Tween(begin: begin, end: end).chain(
-            CurveTween(curve: curve));
-
-        return SlideTransition(
-          position: animation.drive(tween),
-          child: child,
-        );
-      },
+  Route _createRoute(Map<dynamic, dynamic> userData) {
+    return MaterialPageRoute(
+      builder: (context) => MyHomePage(userData: userData),
     );
   }
 
-}
 
+}

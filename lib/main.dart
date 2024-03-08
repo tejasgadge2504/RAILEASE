@@ -15,7 +15,7 @@ import 'firebase_options.dart';
 
 
 void main() async {
-   WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -47,29 +47,44 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
+
+  final Map<dynamic, dynamic> userData;
+
+  MyHomePage({Key? key, required this.userData}) : super(key: key);
+
+
+  // MyHomePage(this.userData);
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
   // const MyHomePage({super.key, required this.title});
-
-  // final String title;
-
   final List_posts=['Steps to Apply','Apply for Consession','E-History','Application Status'];
 
   @override
   Widget build(BuildContext context) {
+// Access VES_ID from widget.userData
+    String vesId = widget.userData['Name'];
 
 
     var size = MediaQuery.of(context).size;
 
     return Scaffold(
-      drawer: SlideBar(),
+      drawer: SlideBar(userData: widget.userData,),
       appBar: AppBar(
         backgroundColor: tAppbar_color.shade200,
         title: Text('RAILEASE'),
         actions: [
           Row(
+
             children: [
-              Text('Welcome User'),
-              IconButton(onPressed: () {}, icon: Icon(Icons.person_2_rounded))
+              Text('Welcome \n ${widget.userData['VES_ID']}'),
+              IconButton(onPressed: () {
+                // print( Text('VES_ID: $vesId'),);
+              }, icon: Icon(Icons.person_2_rounded))
             ],
           )
         ],
@@ -115,15 +130,15 @@ class MyHomePage extends StatelessWidget {
             );
           } else if (List_posts[index] == 'E-History') {
 
-    // Navigate to the TrainPassHistoryPage when 'E-History' is clicked
-           return Mypage(
-            child: List_posts[index],
-             onTap: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => TrainPassHistoryPage()),
-    );
-    },
-    );
-    }
+            // Navigate to the TrainPassHistoryPage when 'E-History' is clicked
+            return Mypage(
+              child: List_posts[index],
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => TrainPassHistoryPage()),
+                );
+              },
+            );
+          }
 
           else {
             return Mypage(

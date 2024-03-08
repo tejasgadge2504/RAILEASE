@@ -1,8 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:mine_app/LoginPage.dart';
+import 'package:mine_app/main.dart';
 import 'package:mine_app/myProfile.dart';
 
-class SlideBar extends StatelessWidget{
+class SlideBar extends StatefulWidget{
+
+  final Map<dynamic, dynamic> userData;
+
+  SlideBar({Key? key, required this.userData}) : super(key: key);
+
+
+  @override
+  State<SlideBar> createState() => _SlideBarState();
+}
+
+class _SlideBarState extends State<SlideBar> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -10,8 +22,8 @@ class SlideBar extends StatelessWidget{
         padding: EdgeInsets.zero,
         children: [
           UserAccountsDrawerHeader(
-            accountName: Text('Tejas Gadge') ,
-            accountEmail: Text('tejasgadge903@gmail.com'),
+            accountName: Text('${widget.userData['Name']}') ,
+            accountEmail: Text('${widget.userData['VES_ID']}'),
             currentAccountPicture: CircleAvatar(
               child: ClipOval(child:
               Image.asset('assets/images/applogo1.png'),
@@ -33,15 +45,12 @@ class SlideBar extends StatelessWidget{
 
                 InkWell(
                   onTap: (){
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ProfilePage(),));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => ProfilePage(userData:widget.userData,),));
 
                   },
                   child: Row(
                       children: [
-                        IconButton(onPressed: (){
-                          //an tap
-
-                        },
+                        IconButton(onPressed: (){},
                             icon: Icon(Icons.person)),
 
                         Text('  My Profile', style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600),),
@@ -97,7 +106,7 @@ class SlideBar extends StatelessWidget{
                 ),
                 InkWell(
                   onTap: (){
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginPage(),));
+                    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => MyApp()), (route) => true,);
 
                   },
                   child:Row(
