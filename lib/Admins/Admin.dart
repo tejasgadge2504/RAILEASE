@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mine_app/Admins/RegisteredUsers.dart';
 import 'package:mine_app/src/constants/colors.dart';
-import 'package:flutter/material.dart';
-import 'package:mine_app/src/constants/colors.dart';
 import 'package:mine_app/Admins/Concession_manage.dart';
 
 class Admin extends StatelessWidget {

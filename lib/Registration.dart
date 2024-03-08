@@ -284,7 +284,8 @@ class _RegistrationState extends State<Registration> {
               if (currentStep > 0) {
                 setState(() => currentStep -= 1);
               }
-            }
+            },
+
 
         )
     );
