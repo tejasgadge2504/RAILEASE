@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mine_app/Admins/RegisteredUsers.dart';
 import 'package:mine_app/Admins/approvedUsers.dart';
+import 'package:mine_app/Admins/req_Consession.dart';
 import 'package:mine_app/src/constants/colors.dart';
 import 'package:mine_app/Admins/Concession_manage.dart';
 
@@ -27,7 +28,7 @@ class Admin extends StatelessWidget {
           onPressed: () {
             if (child == 'Concession Request Management') {
               // Handle navigation to Registration
-               Navigator.of(context).push(MaterialPageRoute(builder: (context) => Concessionmanagement(),));
+               Navigator.of(context).push(MaterialPageRoute(builder: (context) => ReqConsession(),));
             }
             if (child == 'Registered Users') {
               // Handle navigation to Registration

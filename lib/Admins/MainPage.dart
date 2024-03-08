@@ -3,6 +3,7 @@ import 'package:mine_app/Admins/Concession_manage.dart';
 import 'package:mine_app/Admins/MonthlyReportPage.dart';
 import 'package:mine_app/Admins/RegisteredUsers.dart';
 import 'package:mine_app/Admins/approvedUsers.dart';
+import 'package:mine_app/Admins/req_Consession.dart';
 import 'package:mine_app/src/constants/colors.dart';
 import 'package:mine_app/Admins/Admin.dart';
 import 'package:mine_app/Admins/SlideBarA.dart';
@@ -48,7 +49,7 @@ class MainPage extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Concessionmanagement()),
+                  MaterialPageRoute(builder: (context) => ReqConsession()),
                 );
               },
             );
