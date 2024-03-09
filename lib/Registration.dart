@@ -212,6 +212,7 @@ class _RegistrationState extends State<Registration> {
                       'Roll No':RollNo.text.toString().toUpperCase(),
                     });
                   }, child: Text('Submit')),
+
                 ],
               ),
             )),
