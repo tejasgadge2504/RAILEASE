@@ -3,7 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:mine_app/src/constants/colors.dart';
 
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends StatefulWidget {
+
+  final Map<dynamic, dynamic> userData;
+
+  ProfilePage({Key? key, required this.userData}) : super(key: key);
+
+  @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,7 +26,7 @@ class ProfilePage extends StatelessWidget {
             //
             // ),
             Icon(Icons.person),
-            SizedBox(width: 8.0),
+            SizedBox(width: 10.0),
             Text('Profile', style: TextStyle(
               fontSize: 24.0, fontWeight: FontWeight.bold,
               color: Colors.white,
@@ -28,7 +38,7 @@ class ProfilePage extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Container(
-            padding: EdgeInsets.all(24.0),
+            padding: EdgeInsets.all(5.0),
             margin: EdgeInsets.all(16.0),
             decoration: BoxDecoration(
               border: Border.all(color: Colors.blue),
@@ -63,10 +73,12 @@ class ProfilePage extends StatelessWidget {
                           width: 2
                       )
                   ),
-                  child: Text(
-                    'Student',
-                    style: TextStyle(fontSize: 17.0,
-                        fontWeight: FontWeight.bold),
+                  child: Center(
+                    child: Text(
+                      '${widget.userData['Name']}',
+                      style: TextStyle(fontSize: 15.0,
+                          fontWeight: FontWeight.bold),
+                    ),
                   ),
                 ),
 
@@ -75,12 +87,12 @@ class ProfilePage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'ID No:',
+                      'Roll No: ',
                       style: TextStyle(fontSize: 18.0,fontWeight: FontWeight.bold ),
                     ),
                     SizedBox(width: 8.0),
                     Text(
-                      'XYZ123',
+                      '${widget.userData['Roll No']}',
                       style: TextStyle(fontSize: 18.0),
                     ),
                   ],
@@ -91,12 +103,12 @@ class ProfilePage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Branch:',
+                      'Branch: ',
                       style: TextStyle(fontSize: 18.0,fontWeight: FontWeight.bold ),
                     ),
                     SizedBox(width: 8.0),
                     Text(
-                      'Cmpn',
+                      '${widget.userData['Branch']}',
                       style: TextStyle(fontSize: 18.0),
                     ),
                   ],
@@ -107,14 +119,10 @@ class ProfilePage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Email:',
+                      'VES_ID:\n${widget.userData['VES_ID']}',
                       style: TextStyle(fontSize: 18.0,fontWeight: FontWeight.bold ),
                     ),
                     SizedBox(width: 8.0),
-                    Text(
-                      'Vedant@gmail.com',
-                      style: TextStyle(fontSize: 18.0),
-                    ),
                   ],
                 ),
 
@@ -123,14 +131,32 @@ class ProfilePage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Phone No:',
+                      'Phone No: ',
                       style: TextStyle(fontSize: 18.0,fontWeight: FontWeight.bold ),
                     ),
                     SizedBox(width: 8.0),
                     Text(
-                      '987xx xx123',
+                      '${widget.userData['Mobile-No']}',
                       style: TextStyle(fontSize: 18.0),
                     ),
+
+                  ],
+                ),
+
+                SizedBox(height: 8.0),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Suburb: ',
+                      style: TextStyle(fontSize: 18.0,fontWeight: FontWeight.bold ),
+                    ),
+                    SizedBox(width: 8.0),
+                    Text(
+                      '${widget.userData['Address']}',
+                      style: TextStyle(fontSize: 18.0),
+                    ),
+
                   ],
                 ),
               ],

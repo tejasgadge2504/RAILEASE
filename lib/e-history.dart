@@ -79,10 +79,18 @@ class _TrainPassHistoryPageState extends State<TrainPassHistoryPage> {
               children: [
                 SizedBox(width: 10),
                 _buildInfoBox('From Station: ${widget.userData['Address']}'),
-                SizedBox(width: 10),
-                _buildInfoBox('To Station: KURLA'),
-              ],
+]
             ),
+    SizedBox(width: 10),
+    Container(
+    margin: EdgeInsets.symmetric(horizontal: 6.0),
+    child: Column(
+    children: [
+    SizedBox(width: 10),
+    _buildInfoBox('To Station: KURLA'),
+    ],
+    ),
+    ),
 
 
             SizedBox(height: 20),

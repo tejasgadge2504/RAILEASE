@@ -213,6 +213,7 @@ class _RegistrationState extends State<Registration> {
                     });
                   }, child: Text('Submit')),
 
+                  CircularProgressIndicator(color: Colors.white,strokeWidth:2,)
                 ],
               ),
             )),
@@ -285,7 +286,8 @@ class _RegistrationState extends State<Registration> {
               if (currentStep > 0) {
                 setState(() => currentStep -= 1);
               }
-            }
+            },
+
 
         )
     );

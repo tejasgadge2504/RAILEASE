@@ -22,8 +22,8 @@ class _SlideBarState extends State<SlideBar> {
         padding: EdgeInsets.zero,
         children: [
           UserAccountsDrawerHeader(
-              accountName: Text('${widget.userData['Name']}') ,
-              accountEmail: Text('${widget.userData['VES_ID']}'),
+            accountName: Text('${widget.userData['Name']}') ,
+            accountEmail: Text('${widget.userData['VES_ID']}'),
             currentAccountPicture: CircleAvatar(
               child: ClipOval(child:
               Image.asset('assets/images/applogo1.png'),
@@ -31,100 +31,100 @@ class _SlideBarState extends State<SlideBar> {
               ),
             ),
           ),
-Container(
+          Container(
 
-  height: 450,
-  child: Column(
+            height: 450,
+            child: Column(
 
-    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-    crossAxisAlignment: CrossAxisAlignment.center,
-
-
-    children: [
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
 
 
-     InkWell(
-       onTap: (){
-         Navigator.push(context, MaterialPageRoute(builder: (context) => ProfilePage(),));
-
-       },
-       child: Row(
-         children: [
-        IconButton(onPressed: (){},
-               icon: Icon(Icons.person)),
-
-           Text('  My Profile', style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600),),
-
-           ]
-       ),
-     ),
-
-      Row(
-          children: [
-            IconButton(onPressed: (){
-              //an tap
-            },
-                icon: Icon(Icons.add_card_outlined)),
-            Text('  Application Status', style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600),),
-
-          ]
-      ),
-
-      Row(
-          children: [
-            IconButton(onPressed: (){
-              //an tap
-            },
-                icon: Icon(Icons.settings)),
-            Text('  Settings', style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600),),
-
-          ]
-      ),
-
-      Row(
-          children: [
-            IconButton(onPressed: (){
-              //an tap
-            },
-                icon: Icon(Icons.share)),
-            Text('  ShareApp', style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600),),
-          ]
-      ),
+              children: [
 
 
-      Divider(height: 5,),
+                InkWell(
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => ProfilePage(userData:widget.userData,),));
 
-      Row(
-          children: [
-            IconButton(onPressed: (){
-              //an tap
-            },
-                icon: Icon(Icons.code_outlined)),
-            Text('  Developers', style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600),),
+                  },
+                  child: Row(
+                      children: [
+                        IconButton(onPressed: (){},
+                            icon: Icon(Icons.person)),
 
-          ]
-      ),
-        InkWell(
-            onTap: (){
-              Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => MyApp()), (route) => true,);
+                        Text('  My Profile', style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600),),
 
-            },
-            child:Row(
-          children: [
-            IconButton(onPressed: (){
-              //an tap
-            },
-                icon: Icon(Icons.logout)),
-            Text('  Sign Out', style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600),),
+                      ]
+                  ),
+                ),
 
-          ]
-      ),
-        )
+                Row(
+                    children: [
+                      IconButton(onPressed: (){
+                        //an tap
+                      },
+                          icon: Icon(Icons.add_card_outlined)),
+                      Text('  Application Status', style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600),),
 
-    ],
+                    ]
+                ),
 
-  ),
-)
+                Row(
+                    children: [
+                      IconButton(onPressed: (){
+                        //an tap
+                      },
+                          icon: Icon(Icons.settings)),
+                      Text('  Settings', style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600),),
+
+                    ]
+                ),
+
+                Row(
+                    children: [
+                      IconButton(onPressed: (){
+                        //an tap
+                      },
+                          icon: Icon(Icons.share)),
+                      Text('  ShareApp', style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600),),
+                    ]
+                ),
+
+
+                Divider(height: 5,),
+
+                Row(
+                    children: [
+                      IconButton(onPressed: (){
+                        //an tap
+                      },
+                          icon: Icon(Icons.code_outlined)),
+                      Text('  Developers', style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600),),
+
+                    ]
+                ),
+                InkWell(
+                  onTap: (){
+                    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => MyApp()), (route) => true,);
+
+                  },
+                  child:Row(
+                      children: [
+                        IconButton(onPressed: (){
+                          //an tap
+                        },
+                            icon: Icon(Icons.logout)),
+                        Text('  Sign Out', style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600),),
+
+                      ]
+                  ),
+                )
+
+              ],
+
+            ),
+          )
 
         ],
       ),
