@@ -1,6 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:mine_app/regDone.dart';
 import 'package:rxdart/utils.dart';
 
 class Registration extends StatefulWidget {
@@ -11,8 +12,11 @@ class Registration extends StatefulWidget {
 class _RegistrationState extends State<Registration> {
 
 
+
   int currentStep = 0;
   bool isCompleted=false;
+  bool isLoading = false; // Flag to track loading state
+
   TextEditingController Name=TextEditingController();
   TextEditingController Gender=TextEditingController();
   TextEditingController Address=TextEditingController();
@@ -35,6 +39,30 @@ class _RegistrationState extends State<Registration> {
   final databaseRef = FirebaseDatabase.instance.ref('Reg Users');
 
   List<String> selectedDocuments = [];
+
+
+
+  Future<void> registerUser() async {
+    setState(() {
+      isLoading = true; // Set loading state to true
+    });
+
+    // Your registration logic here
+    // Simulating registration with delay
+    await Future.delayed(Duration(seconds: 2));
+
+    // Navigate to RegDone page after registration
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => RegDone()),
+    );
+
+    setState(() {
+      isLoading = false; // Reset loading state after registration
+    });
+  }
+
+
   List<Step> stepList() =>
       [
         Step(
@@ -190,11 +218,15 @@ class _RegistrationState extends State<Registration> {
                   ),
                   ElevatedButton(onPressed: (){
 
+
                     if(Name.text.isEmpty||Gender.text.isEmpty||Address.text.isEmpty||Mobile_No.text.isEmpty||Email_ID.text.isEmpty||VES_ID.text.isEmpty||Admission_Year.text.isEmpty||Expected_Gradutaion_Year.text.isEmpty||Branch.text.isEmpty||Divison.text.isEmpty||RollNo.text.isEmpty){
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Please Fill all the Fields correctly'),
                       duration: Duration(seconds: 2),));
                       return;  // dont proceed adding data
-                    }
+                    };
+
+                    isLoading ? null : registerUser; // Disable button when loading
+
 
                     String PriKey = RollNo.text + "_" + Divison.text;
 
@@ -211,8 +243,20 @@ class _RegistrationState extends State<Registration> {
                       'Division':Divison.text.toString().toUpperCase(),
                       'Roll No':RollNo.text.toString().toUpperCase(),
                     });
-                  }, child: Text('Submit')),
-                  CircularProgressIndicator(color: Colors.white,strokeWidth:2,)
+                  },
+
+
+                   child: isLoading
+                      ? SizedBox(
+                    width: 20,
+                    height: 20,
+                    child: CircularProgressIndicator(
+                      color: Colors.white,
+                      strokeWidth: 2,
+                    ),
+                  )
+                          :Text('Submit')),
+
                 ],
               ),
             )),
@@ -259,6 +303,10 @@ class _RegistrationState extends State<Registration> {
 
       ];
 
+
+
+
+
   @override
   Widget build(BuildContext context) {
 
@@ -288,7 +336,26 @@ class _RegistrationState extends State<Registration> {
             },
 
 
-        )
+        ),
+
+    // bottomNavigationBar: BottomAppBar(
+    // child: Padding(
+    // padding: const EdgeInsets.all(16.0),
+    // child: ElevatedButton(
+    // onPressed: isLoading ? null : registerUser, // Disable button when loading
+    // // child: isLoading
+    // // ? SizedBox(
+    // // width: 20,
+    // // height: 20,
+    // // child: CircularProgressIndicator(
+    // // color: Colors.white,
+    // // strokeWidth: 2,
+    // // ),
+    // // )
+    //     : Text('Submit'),
+    // ),
+    // ),
+    // ),
     );
 
   }
