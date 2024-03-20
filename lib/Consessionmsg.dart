@@ -13,6 +13,7 @@ class Consessionmsg extends StatelessWidget {
             padding: EdgeInsets.all(12.0),
             child: Text(
               'You have successfully applied for concession. Your application is under processing. Your slot to collect consession will be notified via your Alternate E-Mail once your concession pass is ready. Kindly keep checking your Alternate E-Mail account on a regular basis',
+             textAlign: TextAlign.justify,
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15.0),
             ),
           ),
@@ -20,6 +21,7 @@ class Consessionmsg extends StatelessWidget {
             padding: EdgeInsets.all(12.0),
             child: Text(
               'Generally, it takes around 2-3 working days of college to process an application. If you have not heard back via E-Mail even after 2-3 working days, then you are requested to contact your college administrator in person (room 208B) in order to avoid further delays.',
+               textAlign: TextAlign.justify,
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15.0),
             ),
           ),
