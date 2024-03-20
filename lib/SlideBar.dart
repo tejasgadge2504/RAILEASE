@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mine_app/LoginPage.dart';
 import 'package:mine_app/main.dart';
 import 'package:mine_app/myProfile.dart';
+import 'package:mine_app/regDone.dart';
 
 class SlideBar extends StatefulWidget{
 
@@ -81,14 +82,20 @@ class _SlideBarState extends State<SlideBar> {
                     ]
                 ),
 
-                Row(
-                    children: [
-                      IconButton(onPressed: (){
-                        //an tap
-                      },
-                          icon: Icon(Icons.share)),
-                      Text('  ShareApp', style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600),),
-                    ]
+                InkWell(
+                  onTap: (){
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => RegDone(),));
+
+                  },
+                  child: Row(
+                      children: [
+                        IconButton(onPressed: (){
+                          //an tap
+                        },
+                            icon: Icon(Icons.share)),
+                        Text('  ShareApp', style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600),),
+                      ]
+                  ),
                 ),
 
 
