@@ -11,8 +11,6 @@ class Registration extends StatefulWidget {
 
 class _RegistrationState extends State<Registration> {
 
-
-
   int currentStep = 0;
   bool isCompleted=false;
   bool isLoading = false; // Flag to track loading state
@@ -29,15 +27,7 @@ class _RegistrationState extends State<Registration> {
   TextEditingController Divison=TextEditingController();
   TextEditingController VES_ID = TextEditingController();
   TextEditingController RollNo = TextEditingController();
-
-
-  // @override
-  // void dispose(){
-  //
-  // }
-   bool loading = false;
   final databaseRef = FirebaseDatabase.instance.ref('Reg Users');
-
   List<String> selectedDocuments = [];
 
 
@@ -309,7 +299,6 @@ class _RegistrationState extends State<Registration> {
 
   @override
   Widget build(BuildContext context) {
-
     var size = MediaQuery.of(context).size;
 
     return Scaffold(
@@ -357,6 +346,12 @@ class _RegistrationState extends State<Registration> {
     // ),
     // ),
     );
+  }
 
+  bool isValidVESID(String vesID) {
+    // Regular expression to match the VES ID format
+    RegExp regex = RegExp(r'^d?20\d{2}\.[a-zA-Z]+\.[a-zA-Z]+@ves\.ac\.in$');
+
+    return regex.hasMatch(vesID);
   }
 }
