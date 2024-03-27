@@ -233,6 +233,13 @@ class _RegistrationState extends State<Registration> {
                       'Division':Divison.text.toString().toUpperCase(),
                       'Roll No':RollNo.text.toString().toUpperCase(),
                     });
+
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (context) => RegDone(),
+                      ),
+                    );
+
                   },
 
 
