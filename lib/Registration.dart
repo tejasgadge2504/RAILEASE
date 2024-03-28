@@ -207,7 +207,15 @@ class _RegistrationState extends State<Registration> {
                     height: 8,
                   ),
                   ElevatedButton(onPressed: (){
-
+                    if (!isValidVESID(VES_ID.text)) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Invalid VES ID. You are not Student Of VESIT.'),
+                          duration: Duration(seconds: 2),
+                        ),
+                      );
+                      return; // Don't proceed adding data
+                    }
 
                     if(Name.text.isEmpty||Gender.text.isEmpty||Address.text.isEmpty||Mobile_No.text.isEmpty||Email_ID.text.isEmpty||VES_ID.text.isEmpty||Admission_Year.text.isEmpty||Expected_Gradutaion_Year.text.isEmpty||Branch.text.isEmpty||Divison.text.isEmpty||RollNo.text.isEmpty){
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Please Fill all the Fields correctly'),
