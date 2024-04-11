@@ -1,47 +1,40 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:mine_app/main.dart';
 import 'package:mine_app/src/constants/colors.dart';
 import 'package:mine_app/src/constants/strings.dart';
-import 'package:firebase_database/firebase_database.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
 
+class _LoginPageState extends State<LoginPage> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   bool passToggle = true;
+  bool loginSuccessful = false;
 
   @override
   void dispose() {
-    // super.dispose();
     emailController.dispose();
     passwordController.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery
-        .of(context)
-        .size;
+    var size = MediaQuery.of(context).size;
 
     return Scaffold(
-
-
       backgroundColor: tlogin_color.shade100,
-      body:
-      SingleChildScrollView(
-        // child: Container(
-        //   height: size.height,
-        //   width: size.width,
-        //   color: tlogin_color.shade100 ,
-
+      body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(12.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: size.height * 0.1,),
-
               Row(
                 children: [
                   SizedBox(width: size.width * 0.47,),
@@ -56,11 +49,8 @@ class LoginPage extends StatelessWidget {
               Text('Please use correct credentials',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                   textAlign: TextAlign.center),
-
-
               Form(
                 child: Column(
-
                   children: [
                     SizedBox(height: size.height * 0.05,),
                     TextFormField(
@@ -69,14 +59,12 @@ class LoginPage extends StatelessWidget {
                       style: TextStyle(color: Colors.white),
                       decoration: const InputDecoration(
                         prefixIcon: Icon(Icons.email_outlined),
-
                         labelText: tEmail_Input,
                         suffixStyle: TextStyle(fontWeight: FontWeight.w900),
                         hintText: tEmail_Input,
                         border: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(
-                                20.0)), borderSide: BorderSide(
-                            color: tButton_border)),
+                            borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                            borderSide: BorderSide(color: tButton_border)),
                       ),
                     ),
                     SizedBox(height: size.height * 0.03,),
@@ -85,36 +73,32 @@ class LoginPage extends StatelessWidget {
                       keyboardType: TextInputType.visiblePassword,
                       controller: passwordController,
                       style: TextStyle(color: Colors.white),
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
                         prefixIcon: Icon(Icons.lock_outline),
                         labelText: tpasswd_Input,
                         suffixStyle: TextStyle(fontWeight: FontWeight.w900),
                         hintText: tpasswd_Input,
                         prefixStyle: TextStyle(color: Colors.white),
                         border: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(
-                                20.0)), borderSide: BorderSide(
-                            color: tButton_border)),
-                        suffixIcon: Icon(Icons.remove_red_eye,),
-                        //
-                        //
-                        //
-                        // InkWell(
-                        //     onTap: (){
-                        //       passToggle=false;
-                        //     },
-                        //     child:
-                        //
-                        // ),
-
-
+                            borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                            borderSide: BorderSide(color: tButton_border)),
+                        suffixIcon: IconButton(
+                          onPressed: () {
+                            // Toggle password visibility
+                            setState(() {
+                              passToggle = !passToggle;
+                            });
+                          },
+                          icon: Icon(
+                            passToggle ? Icons.visibility_off : Icons.visibility,
+                            color: Colors.purple,
+                          ),
+                        ),
                       ),
                     ),
-
-
                     SizedBox(height: size.height * 0.03),
                     Align(
-                      alignment: Alignment.centerRight, // Align to the center
+                      alignment: Alignment.centerRight,
                       child: InkWell(
                         onTap: () {},
                         child: Text(
@@ -133,7 +117,6 @@ class LoginPage extends StatelessWidget {
                       child: ElevatedButton(
                         onPressed: () {
                           validateAndNavigate(context);
-                          // Navigator.of(context).pushReplacement(_createRoute());
                         },
                         child: Text('LOGIN'),
                       ),
@@ -149,8 +132,14 @@ class LoginPage extends StatelessWidget {
   }
 
   void validateAndNavigate(BuildContext context) async {
-    String enteredVESID = emailController.text.trim();
-    String enteredMobileNo = passwordController.text.trim();
+    String enteredEmail = emailController.text.trim();
+    String enteredPassword = passwordController.text.trim();
+
+    // Check if email matches the specified format
+    if (!isValidEmailFormat(enteredEmail)) {
+      showInvalidEmailDialog(context);
+      return;
+    }
 
     DatabaseReference approvedUsersReference =
     FirebaseDatabase.instance.ref().child('Approved Users');
@@ -158,38 +147,54 @@ class LoginPage extends StatelessWidget {
     try {
       DatabaseEvent event = await approvedUsersReference.once();
       DataSnapshot snapshot = event.snapshot;
-      Map<dynamic, dynamic>? approvedUsersData = snapshot.value as Map<dynamic, dynamic>?;
+      Map<dynamic, dynamic>? approvedUsersData =
+      snapshot.value as Map<dynamic, dynamic>?;
 
       if (approvedUsersData != null) {
         approvedUsersData.forEach((key, value) {
-          if (value['VES_ID'] == enteredVESID &&
-              value['Mobile-No'] == enteredMobileNo) {
-            Navigator.of(context).pushReplacement(
-              MaterialPageRoute(
-                builder: (context) => MyHomePage(userData: value),
-              ),
-            );
-
-            // Navigator.of(context).pushReplacement(_createRoute(approvedUsersData));
-            //
-
-            // Navigator.of(context).pushReplacement(_createRoute());
+          if (value['VES_ID'] == enteredEmail &&
+              value['Mobile-No'] == enteredPassword) {
+            Navigator.of(context).pushReplacement(_createRoute(value));
+            loginSuccessful = true; // Set flag to true for successful login
             return;
-          }
-          else{
-            // showInvalidCredentialsDialog(context);
-
           }
         });
       }
-      else{
-        showInvalidCredentialsDialog(context);
 
+      if (!loginSuccessful) {
+        showInvalidCredentialsDialog(context);
       }
     } catch (error) {
       print("Error fetching data: $error");
-      showInvalidCredentialsDialog(context);
+      if (!loginSuccessful) {
+        showInvalidCredentialsDialog(context);
+      }
     }
+  }
+
+  bool isValidEmailFormat(String email) {
+    RegExp regex = RegExp(r'^d?20\d{2}\.[a-zA-Z]+\.[a-zA-Z]+@ves\.ac\.in$');
+    return regex.hasMatch(email);
+  }
+
+  void showInvalidEmailDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Invalid Email"),
+          content: Text("You are not Student Of VESIT."),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text("OK"),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   void showInvalidCredentialsDialog(BuildContext context) {
@@ -203,9 +208,6 @@ class LoginPage extends StatelessWidget {
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
-                // Navigator.of(context).push(MaterialPageRoute(builder: (context) => LoginPage(),));
-
-                // print('ok');
               },
               child: Text("OK"),
             ),
@@ -215,31 +217,9 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-
-  // Route _createRoute() {
-  //   return PageRouteBuilder(
-  //     pageBuilder: (context, animation, secondaryAnimation) => MyHomePage(),
-  //     transitionsBuilder: (context, animation, secondaryAnimation, child) {
-  //       const begin = Offset(0.0, 1.0);
-  //       const end = Offset.zero;
-  //       const curve = Curves.easeIn;
-  //
-  //       var tween = Tween(begin: begin, end: end).chain(
-  //           CurveTween(curve: curve));
-  //
-  //       return SlideTransition(
-  //         position: animation.drive(tween),
-  //         child: child,
-  //       );
-  //     },
-  //   );
-  // }
-
   Route _createRoute(Map<dynamic, dynamic> userData) {
     return MaterialPageRoute(
       builder: (context) => MyHomePage(userData: userData),
     );
   }
-
-
 }
