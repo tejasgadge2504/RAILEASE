@@ -54,7 +54,7 @@ class _ConcessionApprovedState extends State<ConcessionApproved> {
           // ===================
 
           ElevatedButton(onPressed:(){
-            _generatePDF(student['Name']);
+            _generatePDF(student['Name'],student['Pass_Type'],student['Address'],student['Class_Type']);
           } ,
           child:
           Text('Print',style: TextStyle(fontWeight: FontWeight.bold),),
@@ -103,14 +103,48 @@ class _ConcessionApprovedState extends State<ConcessionApproved> {
 //   }
 
 // Add the following function to your _ConcessionApprovedState class
-  Future<void> _generatePDF(String name) async {
+  Future<void> _generatePDF(String name,String type,String suburb,String Class_type) async {
     final pdf = pw.Document();
 
     pdf.addPage(
       pw.Page(
         build: (pw.Context context) {
+
           return pw.Center(
-            child: pw.Text(name),
+            child: pw.Container(
+              height: 1000,
+              width: 800,
+              child: pw.Column(
+                  mainAxisAlignment: pw.MainAxisAlignment.center,
+
+
+
+                  children: [
+                    pw.SizedBox(height: 100),
+                    pw.Text(name),
+                  pw.SizedBox(height: 200),
+                  pw.Row(
+                    mainAxisAlignment: pw.MainAxisAlignment.center,
+
+                    children: [
+                      pw.Text(type),
+                      pw.SizedBox(width: 30),
+                      pw.Text(suburb),
+                      pw.SizedBox(width: 30),
+                      pw.Text('Kurla'),
+                      pw.SizedBox(width: 100),
+                      pw.Text(Class_type),
+
+                    ],
+
+                  ),
+                  pw.SizedBox(height: 250),
+                  pw.Text('Made with love by Team INSPIRE',style: pw.TextStyle(fontWeight: pw.FontWeight.bold)),
+                ]
+              )
+
+            )
+
           );
         },
       ),
