@@ -10,7 +10,6 @@ class Registration extends StatefulWidget {
 }
 
 class _RegistrationState extends State<Registration> {
-
   int currentStep = 0;
   bool isCompleted=false;
   bool isLoading = false; // Flag to track loading state
@@ -18,11 +17,10 @@ class _RegistrationState extends State<Registration> {
   TextEditingController Name=TextEditingController();
   TextEditingController Gender=TextEditingController();
   TextEditingController Address=TextEditingController();
-
   TextEditingController Mobile_No=TextEditingController();
   TextEditingController Email_ID=TextEditingController();
   TextEditingController Admission_Year=TextEditingController();
-  TextEditingController Expected_Gradutaion_Year=TextEditingController();
+  TextEditingController Expected_Graduation_Year=TextEditingController();
   TextEditingController Branch=TextEditingController();
   TextEditingController Divison=TextEditingController();
   TextEditingController VES_ID = TextEditingController();
@@ -30,7 +28,39 @@ class _RegistrationState extends State<Registration> {
   final databaseRef = FirebaseDatabase.instance.ref('Reg Users');
   List<String> selectedDocuments = [];
 
+  @override
+  void initState() {
+    super.initState();
+    // Add listener to Admission Year field controller
+    Admission_Year.addListener(updateExpectedGraduationYear);
+  }
 
+  void updateExpectedGraduationYear() {
+    String admissionYear = Admission_Year.text;
+    if (admissionYear.isNotEmpty) {
+      int admissionYearInt = int.tryParse(admissionYear) ?? 0;
+      int expectedGraduationYear = admissionYearInt + 4;
+      Expected_Graduation_Year.text = expectedGraduationYear.toString();
+    }
+  }
+
+  @override
+  void dispose() {
+    // Clean up controllers and remove listener
+    Admission_Year.removeListener(updateExpectedGraduationYear);
+    Name.dispose();
+    Gender.dispose();
+    Address.dispose();
+    Mobile_No.dispose();
+    Email_ID.dispose();
+    Admission_Year.dispose();
+    Expected_Graduation_Year.dispose();
+    Branch.dispose();
+    Divison.dispose();
+    VES_ID.dispose();
+    RollNo.dispose();
+    super.dispose();
+  }
 
   Future<void> registerUser() async {
     setState(() {
@@ -52,7 +82,6 @@ class _RegistrationState extends State<Registration> {
     });
   }
 
-
   List<Step> stepList() =>
       [
         Step(
@@ -73,7 +102,6 @@ class _RegistrationState extends State<Registration> {
                 TextField(
                   controller: Gender,
                   keyboardType: TextInputType.text,
-
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Gender',
@@ -83,7 +111,6 @@ class _RegistrationState extends State<Registration> {
                 TextField(
                   controller: Address,
                   keyboardType: TextInputType.text,
-
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Address ',
@@ -93,7 +120,6 @@ class _RegistrationState extends State<Registration> {
                 TextField(
                   controller: Mobile_No,
                   keyboardType: TextInputType.number,
-
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Mobile-No',
@@ -103,7 +129,6 @@ class _RegistrationState extends State<Registration> {
                 TextField(
                   controller: Email_ID,
                   keyboardType: TextInputType.text,
-
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Email-ID(other than ves-id)',
@@ -138,93 +163,104 @@ class _RegistrationState extends State<Registration> {
           ),
         ),
         Step(
-            isActive: currentStep >= 1,
-            title: const Text('Academic \n Info'),
-            content: Container(
-              child: Column(
-                children: [
-                  TextField(
-                    controller: VES_ID,
-                    keyboardType: TextInputType.text,
-
-                    decoration: const InputDecoration(border: OutlineInputBorder(),
-                      labelText: 'VES-ID',
-                    ),
+          isActive: currentStep >= 1,
+          title: const Text('Academic \n Info'),
+          content: Container(
+            child: Column(
+              children: [
+                TextField(
+                  controller: VES_ID,
+                  keyboardType: TextInputType.text,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'VES-ID',
                   ),
-                  const SizedBox(
-                    height: 8,
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                TextField(
+                  controller: Admission_Year,
+                  keyboardType: TextInputType.number,
+                  onChanged: (admissionYear) {
+                    // Calculate expected graduation year when admission year changes
+                    if (admissionYear.isNotEmpty) {
+                      int admissionYearInt = int.tryParse(admissionYear) ?? 0;
+                      int expectedGraduationYear = admissionYearInt + 4;
+                      Expected_Graduation_Year.text = expectedGraduationYear.toString();
+                    }
+                  },
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Admission Year',
                   ),
-                  TextField(
-                    controller: Admission_Year,
-                    keyboardType: TextInputType.number,
-
-                    decoration: const InputDecoration(border: OutlineInputBorder(),
-                      labelText: 'Admission Year',
-                    ),
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                TextField(
+                  controller: Expected_Graduation_Year,
+                  keyboardType: TextInputType.number,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Expected Graduation Year',
                   ),
-                  const SizedBox(
-                    height: 8,
-                  ),  TextField(
-                    controller: Expected_Gradutaion_Year,
-                    keyboardType: TextInputType.number,
-
-                    decoration: const InputDecoration(border: OutlineInputBorder(),
-                      labelText: 'Expected Gradutaion Year',
-                    ),
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                TextField(
+                  controller: Branch,
+                  keyboardType: TextInputType.text,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Branch',
                   ),
-                  const SizedBox(
-                    height: 8,
-                  ),  TextField(
-                    controller: Branch,
-                    keyboardType: TextInputType.text,
-
-                    decoration: const InputDecoration(border: OutlineInputBorder(),
-                      labelText: 'Branch',
-                    ),
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                TextField(
+                  controller: Divison,
+                  keyboardType: TextInputType.text,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Division',
                   ),
-                  const SizedBox(
-                    height: 8,
-                  ),  TextField(
-                    controller: Divison,
-                    keyboardType: TextInputType.text,
-
-                    decoration: const InputDecoration(border: OutlineInputBorder(),
-                      labelText: 'Division',
-                    ),
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                TextField(
+                  controller: RollNo,
+                  keyboardType: TextInputType.number,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Roll Number',
                   ),
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  TextField(
-                    controller: RollNo,
-                    keyboardType: TextInputType.number,
-
-                    decoration: const InputDecoration(border: OutlineInputBorder(),
-                      labelText: 'Roll Number',
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  ElevatedButton(onPressed: (){
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                ElevatedButton(
+                  onPressed: () {
                     if (!isValidVESID(VES_ID.text)) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
-                          content: Text('Invalid VES ID. You are not Student Of VESIT.'),
+                          content: Text('Invalid VES ID. You are not a Student Of VESIT.'),
                           duration: Duration(seconds: 2),
                         ),
                       );
                       return; // Don't proceed adding data
                     }
 
-                    if(Name.text.isEmpty||Gender.text.isEmpty||Address.text.isEmpty||Mobile_No.text.isEmpty||Email_ID.text.isEmpty||VES_ID.text.isEmpty||Admission_Year.text.isEmpty||Expected_Gradutaion_Year.text.isEmpty||Branch.text.isEmpty||Divison.text.isEmpty||RollNo.text.isEmpty){
+                    if (Name.text.isEmpty || Gender.text.isEmpty || Address.text.isEmpty || Mobile_No.text.isEmpty || Email_ID.text.isEmpty || VES_ID.text.isEmpty || Admission_Year.text.isEmpty || Expected_Graduation_Year.text.isEmpty || Branch.text.isEmpty || Divison.text.isEmpty || RollNo.text.isEmpty) {
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Please Fill all the Fields correctly'),
-                      duration: Duration(seconds: 2),));
-                      return;  // dont proceed adding data
-                    };
+                        duration: Duration(seconds: 2),));
+                      return;  // don't proceed adding data
+                    }
 
-                    isLoading ? null : registerUser; // Disable button when loading
-
+                    isLoading ? null : registerUser(); // Disable button when loading
 
                     String PriKey = RollNo.text + "_" + Divison.text;
 
@@ -236,7 +272,7 @@ class _RegistrationState extends State<Registration> {
                       'Email-ID':Email_ID.text.toString(),
                       'VES_ID':VES_ID.text.toLowerCase().toString(),
                       'Admission Year':Admission_Year.text.toString(),
-                      'Graduation Year':Expected_Gradutaion_Year.text.toString(),
+                      'Graduation Year':Expected_Graduation_Year.text.toString(),
                       'Branch':Branch.text.toString().toUpperCase(),
                       'Division':Divison.text.toString().toUpperCase(),
                       'Roll No':RollNo.text.toString().toUpperCase(),
@@ -249,9 +285,7 @@ class _RegistrationState extends State<Registration> {
                     );
 
                   },
-
-
-                   child: isLoading
+                  child: isLoading
                       ? SizedBox(
                     width: 20,
                     height: 20,
@@ -260,106 +294,41 @@ class _RegistrationState extends State<Registration> {
                       strokeWidth: 2,
                     ),
                   )
-                          :Text('Submit')),
+                      :Text('Submit'),
+                ),
 
-                ],
-              ),
-            )),
-        // Step(
-        //   isActive: currentStep >= 2,
-        //   title: const Text('OK'),
-        //   content: Column(
-        //     children: [
-        //       Container(
-        //         child: Image.asset("assets/images/Success.png"),
-        //         height:150 ,
-        //       ),
-        //       // Image.asset("assets/Success.png"),
-        //       // const SizedBox(height: 16),
-        //
-        //
-        //       SizedBox(height: 30,),
-        //
-        //       SizedBox(height: 30),
-        //       ElevatedButton(
-        //         onPressed: () {
-        //           // Navigator.pushReplacementNamed(context, '/');
-        //         },
-        //         child: Text('Your Request is Successfully accepted \nYou will be notified once your application is being accepted via Mail. \n\nThankyou !!'),
-        //
-        //
-        //         style: ElevatedButton.styleFrom(
-        //           primary: Colors.blue,
-        //           onPrimary: Colors.white,
-        //           padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0 - 9.0),
-        //
-        //
-        //         ),
-        //
-        //
-        //       ),
-        //       SizedBox(height: 30,),
-        //
-
-        //     ],
-        //   ),
-        // ),
-
-
+              ],
+            ),
+          ),
+        ),
       ];
-
-
-
-
 
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
 
     return Scaffold(
-        appBar: AppBar(
-          title: Text("New User Registration"),
-        ),
-        body: Stepper(
-            type: StepperType.vertical,
-            steps: stepList(),
-            currentStep: currentStep,
-            onStepContinue: () {
-              final isLastStep = currentStep == stepList().length - 1;
-              if (isLastStep) {
-                print('COMPLETED');
-              } else {
-                setState(() => currentStep += 1);
-              }
-            },
-            onStepCancel: () {
-
-              if (currentStep > 0) {
-                setState(() => currentStep -= 1);
-              }
-            },
-
-
-        ),
-
-    // bottomNavigationBar: BottomAppBar(
-    // child: Padding(
-    // padding: const EdgeInsets.all(16.0),
-    // child: ElevatedButton(
-    // onPressed: isLoading ? null : registerUser, // Disable button when loading
-    // // child: isLoading
-    // // ? SizedBox(
-    // // width: 20,
-    // // height: 20,
-    // // child: CircularProgressIndicator(
-    // // color: Colors.white,
-    // // strokeWidth: 2,
-    // // ),
-    // // )
-    //     : Text('Submit'),
-    // ),
-    // ),
-    // ),
+      appBar: AppBar(
+        title: Text("New User Registration"),
+      ),
+      body: Stepper(
+        type: StepperType.vertical,
+        steps: stepList(),
+        currentStep: currentStep,
+        onStepContinue: () {
+          final isLastStep = currentStep == stepList().length - 1;
+          if (isLastStep) {
+            print('COMPLETED');
+          } else {
+            setState(() => currentStep += 1);
+          }
+        },
+        onStepCancel: () {
+          if (currentStep > 0) {
+            setState(() => currentStep -= 1);
+          }
+        },
+      ),
     );
   }
 
