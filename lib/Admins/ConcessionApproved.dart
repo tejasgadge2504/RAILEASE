@@ -57,7 +57,7 @@ class _ConcessionApprovedState extends State<ConcessionApproved> {
             _generatePDF(student['Name'],student['Pass_Type'],student['Address'],student['Class_Type']);
           } ,
           child:
-          Text('Print',style: TextStyle(fontWeight: FontWeight.bold),),
+          Text('Print',style: TextStyle(fontWeight: FontWeight.bold)),
           ),
 
         ],

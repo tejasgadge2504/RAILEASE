@@ -67,60 +67,50 @@ class _ReqConsessionState extends State<ReqConsession> {
             height: 5,
           ),
           Text(
-           '${student['Class_Type']} - ${student['Pass_Type']}',
+            '${student['Class_Type']} - ${student['Pass_Type']}',
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400,color: Colors.white),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              GestureDetector(
-                onTap: () {
-
-                  //EDIT LOGIC
-
-                },
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.edit,
-                      color: Colors.yellow,
-                    ),
-                  ],
-                ),
-              ),
+              // ElevatedButton(
+              //   onPressed: () {
+              //
+              //     //EDIT LOGIC
+              //
+              //   },
+              //   child: Text('Edit'),
+              //   style: ElevatedButton.styleFrom(
+              //     primary: Colors.yellow,
+              //   ),
+              // ),
               const SizedBox(
                 width: 6,
               ),
-              GestureDetector(
-                onTap: () {
+              ElevatedButton(
+                onPressed: () {
 
                   //APPROVE APPLICATION
                   // Move the approved user to the 'Approved Users' database
-                  reference.child(student['Key']).remove(); // Remove from 'Reg Users'
-                  approvedUsersReference.child(student['Key']).set(student); // Add to 'Approved Users'
+                  reference.child(student['Key']).remove(); // Remove from 'Consession Req'
+                  approvedUsersReference.child(student['Key']).set(student); // Add to 'Approved Consession'
 
                   // Send email confirmation
                   sendEmailConfirmation(student['VES_ID'],student['Name']);
 
                 },
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.add,
-                      color: Colors.lightGreenAccent,
-                      weight: Checkbox.width,
-                      size: 30,
-                    ),
-                  ],
+                child: Text('Approve'),
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.purple,
                 ),
               ),
 
               const SizedBox(
                 width: 6,
               ),
-              GestureDetector(
-                onTap: () {
+              ElevatedButton(
+                onPressed: () {
                   Navigator.push(
                     context as BuildContext,
                     MaterialPageRoute(builder: (context) => ViewMore(userData: student) ),
@@ -128,15 +118,10 @@ class _ReqConsessionState extends State<ReqConsession> {
                   //SEEN THE DETAILS
 
                 },
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.more_horiz,
-                      color: Colors.white,
-                      weight: Checkbox.width,
-                      size: 30,
-                    ),
-                  ],
+                child: Text('View'),
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.white,
+                  onPrimary: Colors.black,
                 ),
               ),
 
@@ -151,7 +136,7 @@ class _ReqConsessionState extends State<ReqConsession> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Registered users'),
+          title: const Text('Consession Request'),
         ),
         body: Container(
           height: double.infinity,
