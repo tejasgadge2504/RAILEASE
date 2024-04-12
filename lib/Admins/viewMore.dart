@@ -93,33 +93,35 @@ class _ViewMoreState extends State<ViewMore> {
                   ],
                 ),
 
-                SizedBox(height: 10.0),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Gender:',
-                      style: TextStyle(fontSize: 16.0,fontWeight: FontWeight.bold ),
-                    ),
-                    SizedBox(width: 8.0),
-                    Text(
-                      '${widget.userData['Gender']}',
-                      style: TextStyle(fontSize: 15.0),
-                    ),
-                  ],
-                ),
 
                 SizedBox(height: 10.0),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Alternate Email:',
+                      'Class Type:',
                       style: TextStyle(fontSize: 16.0,fontWeight: FontWeight.bold ),
                     ),
                     SizedBox(width: 8.0),
                     Text(
-                      '${widget.userData['Email-ID']}',
+                      '${widget.userData['Class_Type']}',
+                      style: TextStyle(fontSize: 15.0),
+                    ),
+                  ],
+                ),
+
+
+                SizedBox(height: 10.0),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Pass Type:',
+                      style: TextStyle(fontSize: 16.0,fontWeight: FontWeight.bold ),
+                    ),
+                    SizedBox(width: 8.0),
+                    Text(
+                      '${widget.userData['Pass_Type']}',
                       style: TextStyle(fontSize: 15.0),
                     ),
                   ],
@@ -141,21 +143,7 @@ class _ViewMoreState extends State<ViewMore> {
                   ],
                 ),
 
-                SizedBox(height: 10.0),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Phone No:',
-                      style: TextStyle(fontSize: 16.0,fontWeight: FontWeight.bold ),
-                    ),
-                    SizedBox(width: 8.0),
-                    Text(
-                      '${widget.userData['Mobile-No']}',
-                      style: TextStyle(fontSize: 15.0),
-                    ),
-                  ],
-                ),
+
 
                 SizedBox(height: 10.0),
                 Row(
@@ -170,9 +158,25 @@ class _ViewMoreState extends State<ViewMore> {
                       '${widget.userData['Address']}',
                       style: TextStyle(fontSize: 15.0),
                     ),
+
+
                   ],
                 ),
-
+                SizedBox(height: 10.0),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'To:',
+                      style: TextStyle(fontSize: 16.0,fontWeight: FontWeight.bold ),
+                    ),
+                    SizedBox(width: 8.0),
+                    Text(
+                      'Kurla',
+                      style: TextStyle(fontSize: 15.0),
+                    ),
+                  ],
+                ),
               ],
             ),
           ),
