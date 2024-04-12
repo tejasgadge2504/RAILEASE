@@ -77,23 +77,23 @@ class _RegUsersState extends State<RegUsers> {
               GestureDetector(
                 onTap: () {
 
-              //EDIT LOGIC
+                  //EDIT LOGIC
 
                 },
                 child: Row(
                   children: [
-                    Icon(
-                      Icons.edit,
-                      color: Colors.yellow,
-                    ),
+                    // Icon(
+                    //   Icons.edit,
+                    //   color: Colors.yellow,
+                    // ),
                   ],
                 ),
               ),
               const SizedBox(
                 width: 6,
               ),
-              GestureDetector(
-                onTap: () {
+              ElevatedButton(
+                onPressed: () {
 
                   //APPROVE APPLICATION
                   // Move the approved user to the 'Approved Users' database
@@ -104,23 +104,17 @@ class _RegUsersState extends State<RegUsers> {
                   sendEmailConfirmation(student['VES_ID'],student['Mobile-No'],student['Name']);
 
                 },
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.add,
-                      color: Colors.lightGreenAccent,
-                      weight: Checkbox.width,
-                      size: 30,
-                    ),
-                  ],
+                child: Text('Approve'),
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.purple,
                 ),
               ),
 
               const SizedBox(
                 width: 6,
               ),
-              GestureDetector(
-                onTap: () {
+              ElevatedButton(
+                onPressed: () {
                   Navigator.push(
                     context as BuildContext,
                     MaterialPageRoute(builder: (context) => ViewMore(userData: student) ),
@@ -128,15 +122,10 @@ class _RegUsersState extends State<RegUsers> {
                   //SEEN THE DETAILS
 
                 },
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.more_horiz,
-                      color: Colors.white,
-                      weight: Checkbox.width,
-                      size: 30,
-                    ),
-                  ],
+                child: Text('View'),
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.white,
+                  onPrimary: Colors.black,
                 ),
               ),
 
