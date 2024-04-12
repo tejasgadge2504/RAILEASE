@@ -25,6 +25,7 @@ if (flutterVersionName == null) {
 android {
     namespace "com.example.mine_app"
     compileSdkVersion flutter.compileSdkVersion
+    compileSdkVersion 34
     ndkVersion flutter.ndkVersion
     defaultConfig {
             multiDexEnabled true

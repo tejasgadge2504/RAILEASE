@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mine_app/Admins/ConcessionApproved.dart';
 import 'package:mine_app/Admins/Concession_manage.dart';
 import 'package:mine_app/Admins/MonthlyReportPage.dart';
 import 'package:mine_app/Admins/RegisteredUsers.dart';
@@ -13,7 +14,7 @@ class MainPage extends StatelessWidget {
     'Concession Request Management',
     'Registered Users',
     'Approved Users ',
-    'Monthly Report',
+    'Granted Concessions',
   ];
 
   @override
@@ -68,7 +69,7 @@ class MainPage extends StatelessWidget {
             );
           }
 
-          else if (listPosts[index] == 'Monthly Report') {
+          else if (listPosts[index] == 'Granted Concessions') {
             // Pass a callback function to handle navigation to Registration
             return Admin(
               child: listPosts[index],
@@ -101,7 +102,7 @@ class MainPage extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => MonthlyReportPage()),
+                  MaterialPageRoute(builder: (context) => ConcessionApproved()),
                 );
               },
             );
