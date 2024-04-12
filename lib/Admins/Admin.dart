@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mine_app/Admins/ConcessionApproved.dart';
 import 'package:mine_app/Admins/RegisteredUsers.dart';
 import 'package:mine_app/Admins/approvedUsers.dart';
 import 'package:mine_app/Admins/req_Consession.dart';
@@ -38,9 +39,9 @@ class Admin extends StatelessWidget {
               // Handle navigation to Registration
               Navigator.of(context).push(MaterialPageRoute(builder: (context) => ApprovedUsers(),));
             }
-            if (child == 'Monthly Report') {
+            if (child == 'Granted Concessions') {
               // Handle navigation to Registration
-              // Navigator.of(context).push(MaterialPageRoute(builder: (context) => ApplicationStatus(),));
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => ConcessionApproved(),));
             } else {
               // Handle other actions if needed
             }
