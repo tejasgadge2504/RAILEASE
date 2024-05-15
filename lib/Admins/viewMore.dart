@@ -111,6 +111,7 @@ class _ViewMoreState extends State<ViewMore> {
                 ),
 
 
+
                 SizedBox(height: 10.0),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
