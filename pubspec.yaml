@@ -51,13 +51,22 @@ dependencies:
   firebase_ui_firestore: ^1.6.2
   cloud_firestore: ^4.15.4
   firebase_storage: ^11.6.5
-  flutterfire_cli: ^0.2.7
+  flutterfire_cli: 1.0.0
 
  # lottie: ^1.0.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: ^0.13.1
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/applogo1.png"
+  adaptive_icon_foreground: "assets/images/logo_foreground.png"
+
+
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -87,6 +96,7 @@ flutter:
     - assets/images/waitingTime.png
     - assets/images/applogo1.png
     - assets/images/vesitcampus.jpg
+    - assets/images/logo_foreground.png
 
     #- assets/lottie/
 
